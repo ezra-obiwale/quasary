@@ -1,0 +1,54 @@
+<template>
+  <q-tooltip :anchor="anchor" :self="self">
+    <slot />
+  </q-tooltip>
+</template>
+
+<script>
+export default {
+  name: 'ToolTipComponent',
+  props: {
+    bottom: {
+      type: Boolean,
+      default: false
+    },
+    left: {
+      type: Boolean,
+      default: true
+    },
+    right: {
+      type: Boolean,
+      default: false
+    },
+    top: {
+      type: Boolean,
+      default: false
+    }
+  },
+  computed: {
+    anchor () {
+      if (this.bottom) {
+        return 'bottom middle'
+      } else if (this.right) {
+        return 'center right'
+      } else if (this.top) {
+        return 'top middle'
+      }
+      return 'center left'
+    },
+    self () {
+      if (this.bottom) {
+        return 'top middle'
+      } else if (this.right) {
+        return 'center left'
+      } else if (this.top) {
+        return 'bottom middle'
+      }
+      return 'center right'
+    }
+  }
+}
+</script>
+
+<style>
+</style>
