@@ -6,6 +6,7 @@ export default class {
 
   connect (col) {
     this.col = this.dpd.col(col)
+    return this
   }
 
   get () {
