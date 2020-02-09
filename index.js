@@ -4,6 +4,9 @@ import Server from './server'
 export default {
   install: function (Vue, store, httpAdapter) {
     store.registerModule('quasary', Store)
-    Vue.prototype.$server = new Server(httpAdapter)
+
+    if (httpAdapter) {
+      Vue.prototype.$server = new Server(httpAdapter)
+    }
   }
 }

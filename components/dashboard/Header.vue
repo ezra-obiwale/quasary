@@ -1,94 +1,89 @@
 <template>
   <q-header elevated reveal class="bg-primary text-white print-hide">
     <q-toolbar>
-      <q-btn
-        v-if="isMobile && currentUser && (canGoBack || sideBar)"
-        dense
-        flat
-        round
-        :icon="canGoBack ? 'arrow_back' : 'menu'"
-        @click="toolbarButtonClicked"
-      />
+      <slot name="before-title">
+        <q-btn
+          v-if="leftMenuBtn"
+          dense
+          flat
+          round
+          icon="menu"
+          @click="$emit('leftMenu')"
+        />
+
+        <q-btn
+          v-if="arrowBackBtn"
+          dense
+          flat
+          round
+          icon="arrow_back"
+          @click="goBack"
+        />
+      </slot>
 
       <q-toolbar-title>
-        <template v-if="isMobile">
-          {{ title }}
-        </template>
+        <slot name="title">
+          <template v-if="title">
+            {{ title }}
+          </template>
+        </slot>
       </q-toolbar-title>
 
-      <q-btn
-        v-if="!isMobile"
-        flat
-        round
-        dense
-        :icon="$q.fullscreen.isActive ? 'fullscreen_exit' : 'fullscreen'"
-        @click="$q.fullscreen.toggle()"
-      >
-        <tool-tip>{{ $q.fullscreen.isActive ? 'Exit fullscreen' : 'Enter fullscreen' }}</tool-tip>
-      </q-btn>
-      <q-btn-dropdown
-        v-if="currentUser"
-        stretch
-        auto-close
-        flat
-        :round="isMobile"
-        :dense="isMobile"
-        icon="perm_identity"
-        text-color="white"
-      >
-        <q-list>
-          <q-item-label header>{{ currentUser.email }}</q-item-label>
-          <q-separator inset spaced />
-          <q-item to="/user" clickable tabindex="0">
-            <q-item-section avatar>
-              <q-avatar icon="person" color="primary" text-color="white" />
-            </q-item-section>
-            <q-item-section>
-              <q-item-label>Update Profile</q-item-label>
-            </q-item-section>
-          </q-item>
-          <q-item to="/user/change-password" clickable tabindex="0">
-            <q-item-section avatar>
-              <q-avatar icon="lock" color="primary" text-color="white" />
-            </q-item-section>
-            <q-item-section>
-              <q-item-label>Change Password</q-item-label>
-            </q-item-section>
-          </q-item>
-          <q-separator inset spaced />
-          <q-item clickable tabindex="0" @click="logout">
-            <q-item-section avatar>
-              <q-avatar icon="logout" color="negative" text-color="white" />
-            </q-item-section>
-            <q-item-section>
-              <q-item-label>Log Out</q-item-label>
-            </q-item-section>
-          </q-item>
-        </q-list>
-      </q-btn-dropdown>
+      <slot name="after-title">
+        <q-btn
+          v-if="fullscreenBtn"
+          flat
+          round
+          dense
+          :icon="$q.fullscreen.isActive ? 'fullscreen_exit' : 'fullscreen'"
+          @click="$q.fullscreen.toggle()"
+        >
+          <tool-tip>
+            {{
+              $q.fullscreen.isActive ? 'Exit fullscreen' : 'Enter fullscreen'
+            }}
+          </tool-tip>
+        </q-btn>
+
+        <q-btn
+          v-if="rightMenuBtn"
+          dense
+          flat
+          round
+          icon="menu"
+          @click="$emit('rightMenu')"
+        />
+      </slot>
     </q-toolbar>
   </q-header>
 </template>
 
 <script>
-import { mapState } from 'vuex'
-
 export default {
   name: 'HeaderComponent',
-  computed: {
-    ...mapState('quasary', ['title', 'canGoBack', 'sideBar'])
-  },
-  methods: {
-    toolbarButtonClicked () {
-      if (this.canGoBack) {
-        this.goBack()
-      } else {
-        this.$emit('toggleLeftDrawer')
-      }
+  props: {
+    arrowBackBtn: {
+      type: Boolean,
+      default: false
+    },
+    fullscreenBtn: {
+      type: Boolean,
+      default: false
+    },
+    leftMenuBtn: {
+      type: Boolean,
+      default: false
+    },
+    rightMenuBtn: {
+      type: Boolean,
+      default: false
+    },
+    title: {
+      type: String,
+      default: ''
     }
   }
 }
 </script>
 
-<style>
-</style>
+<style></style>

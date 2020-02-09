@@ -4,7 +4,8 @@
     tag="a"
     :to="path"
     :active="isActive"
-    active-class="bg-primary-600"
+    :active-class="activeClass"
+    @click="handler"
   >
     <q-item-section v-if="!isChild && icon" avatar>
       <q-icon :name="icon" />
@@ -20,6 +21,14 @@
 export default {
   name: 'SideNavItemComponent',
   props: {
+    activeClass: {
+      type: String,
+      default: 'bg-primary-600'
+    },
+    handler: {
+      type: Function,
+      default: () => () => {}
+    },
     icon: {
       type: String,
       default: ''
@@ -36,8 +45,7 @@ export default {
       type: Function
     },
     path: {
-      type: String,
-      required: true
+      type: String
     },
     subLabel: {
       type: String,
@@ -46,11 +54,12 @@ export default {
   },
   computed: {
     isActive () {
-      return this.activeIf ? this.activeIf(this.$route) : this.$route.path.startsWith(this.path)
+      return this.activeIf
+        ? this.activeIf(this.$route)
+        : this.$route.path.startsWith(this.path)
     }
   }
 }
 </script>
 
-<style>
-</style>
+<style></style>
