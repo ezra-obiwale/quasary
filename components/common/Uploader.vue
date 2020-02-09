@@ -1,11 +1,11 @@
 <template>
   <div>
-    <q-img v-if="!canShowUploader" class="cursor-pointer" :src="preview" basic contain @click="previewClicked" :ratio="7/3">
+    <q-img ref="QImg" v-if="!canShowUploader" class="cursor-pointer" :src="preview" basic contain @click="previewClicked" :ratio="7/3">
       <div v-if="previewText" class="absolute-full text-subtitle2 flex flex-center">
         {{ previewText }}
       </div>
     </q-img>
-    <q-uploader v-show="canShowUploader" ref="uploader" class="full-width" :accept="accept" :field-name="fieldName" :headers="theHeaders" :url="theUrl" v-bind="$attrs" v-on="$listeners" @added="hasFile = true" @removed="hasFile = false" @uploaded="uploaded" @failed="failed" hide-upload-btn />
+    <q-uploader ref="QUploader" v-show="canShowUploader" ref="uploader" class="full-width" :accept="accept" :field-name="fieldName" :headers="theHeaders" :url="theUrl" v-bind="$attrs" v-on="$listeners" @added="hasFile = true" @removed="hasFile = false" @uploaded="uploaded" @failed="failed" hide-upload-btn />
   </div>
 </template>
 

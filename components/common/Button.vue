@@ -1,5 +1,5 @@
 <template>
-  <q-btn :loading="loading" :disabled="loading" :color="color" :class="{ 'full-width' : !regular }" :size="actualSize" v-bind="$attrs" v-on="$listeners">
+  <q-btn ref="QBtn" :loading="loading" :disabled="loading" :color="color" :class="{ 'full-width' : !regular }" :size="actualSize" v-bind="$attrs" v-on="$listeners">
     <template #loading>
       <q-spinner-rings />
     </template>

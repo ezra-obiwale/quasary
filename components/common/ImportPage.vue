@@ -1,5 +1,5 @@
 <template>
-  <app-page can-go-back no-create-btn full-width no-infinite-scroll no-pull-to-refresh :title="`Import ${capitalizedItem}`" :icon="icon" :working="working">
+  <app-page ref="Page" can-go-back no-create-btn full-width no-infinite-scroll no-pull-to-refresh :title="`Import ${capitalizedItem}`" :icon="icon" :working="working">
     <template v-if="templateUrl || fileAdded" #page-desktop-buttons>
       <q-btn :disabled="fileAdded && !canSave" :label="btnLabel" :icon="btnIcon" class="float-right" color="primary" @click="btnClicked" />
     </template>

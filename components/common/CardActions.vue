@@ -1,5 +1,5 @@
 <template>
-  <q-card-actions :class="{'bg-primary-light': confirmDelete}">
+  <q-card-actions ref="QCardActions" :class="{'bg-primary-light': confirmDelete}">
     <template v-if="confirmDelete">
       <div class="on-left q-mt-sm" :class="{'text-negative': deleteErrorMessage}">{{ deleteMessage }}</div>
       <div class="text-right">
@@ -9,8 +9,8 @@
     </template>
     <template v-else>
       <slot name="before" />
-      <q-btn v-if="!noEdit" flat :label="iconsOnly ? '' : 'Edit'" :icon="noIcons ? '' : 'edit'" color="primary" @click="edit" />
-      <q-btn v-if="!noDelete" flat :label="iconsOnly ? '' : 'Delete'" :icon="noIcons ? '' : 'delete'" color="negative" @click="confirmDelete = true" />
+      <q-btn ref="QBtnEdit" v-if="!noEdit" flat :label="iconsOnly ? '' : 'Edit'" :icon="noIcons ? '' : 'edit'" color="primary" @click="edit" />
+      <q-btn ref="QBtnDelete" v-if="!noDelete" flat :label="iconsOnly ? '' : 'Delete'" :icon="noIcons ? '' : 'delete'" color="negative" @click="confirmDelete = true" />
       <slot name="after" />
     </template>
   </q-card-actions>

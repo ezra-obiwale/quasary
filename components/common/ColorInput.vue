@@ -1,5 +1,6 @@
 <template>
   <q-input
+    ref="QInput"
     v-model="model"
     v-bind="attrs"
     v-on="$listeners"

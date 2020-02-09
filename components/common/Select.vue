@@ -1,5 +1,5 @@
 <template>
-  <form-element tag="q-select" :emit-value="emitValue" :map-options="emitValue" :multiple="multiple" :use-chips="multiple" :display-value-sanitize="!htmlOptions" :options-sanitize="!htmlOptions" :options-selected-class="!showSelectedOption ? 'hidden' : ''" v-bind="$attrs" v-on="$listeners">
+  <form-element ref="FormElement" tag="q-select" :emit-value="emitValue" :map-options="emitValue" :multiple="multiple" :use-chips="multiple" :display-value-sanitize="!htmlOptions" :options-sanitize="!htmlOptions" :options-selected-class="!showSelectedOption ? 'hidden' : ''" v-bind="$attrs" v-on="$listeners">
     <slot />
     <slot name="hint" slot="hint" />
   </form-element>

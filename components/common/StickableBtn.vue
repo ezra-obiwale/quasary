@@ -1,7 +1,7 @@
 <template>
-  <app-btn v-if="$q.screen.gt.sm || nonSticky" :label="label" :icon="icon" v-bind="$attrs" v-on="$listeners" />
-  <q-page-sticky v-else style="z-index: 9" position="bottom-right" :offset="[18, 18]">
-    <app-btn fab :icon="mobileIcon || icon" regular v-bind="$attrs" v-on="$listeners" />
+  <app-btn ref="Button" v-if="$q.screen.gt.sm || nonSticky" :label="label" :icon="icon" v-bind="$attrs" v-on="$listeners" />
+  <q-page-sticky ref="QPageSticky" v-else style="z-index: 9" position="bottom-right" :offset="[18, 18]">
+    <app-btn ref="Button" fab :icon="mobileIcon || icon" regular v-bind="$attrs" v-on="$listeners" />
   </q-page-sticky>
 </template>
 

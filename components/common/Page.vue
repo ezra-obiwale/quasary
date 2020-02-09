@@ -1,7 +1,20 @@
 <template>
-  <q-page :key="pageIndex" padding class="relative-position" :class="{'print-pt-remove': hideTitleOnPrint}" :style="styleObject">
-    <component :is="isMobile && !noInfiniteScroll ? 'q-infinite-scroll' : 'div'" @load="load">
-      <component :is="isMobile && !noPullToRefresh ? 'q-pull-to-refresh' : 'div'" @refresh="refresh">
+  <q-page
+    ref="QPage"
+    :key="pageIndex"
+    :padding="!noPadding"
+    class="relative-position"
+    :class="{ 'print-pt-remove': hideTitleOnPrint }"
+    :style="styleObject"
+  >
+    <component
+      :is="isMobile && !noInfiniteScroll ? 'q-infinite-scroll' : 'div'"
+      @load="load"
+    >
+      <component
+        :is="isMobile && !noPullToRefresh ? 'q-pull-to-refresh' : 'div'"
+        @refresh="refresh"
+      >
         <slot>
           <div class="row">
             <div :class="localCardClass">
@@ -24,18 +37,51 @@
 
       <q-page-sticky v-if="isMobile" position="bottom-right" :offset="[18, 18]">
         <slot name="page-mobile-buttons">
-          <q-fab v-if="canImport && !noCreateBtn" v-model="fabIsOpen" color="primary" :flat="fabIsOpen" icon="keyboard_arrow_up" direction="up">
-            <q-fab-action round color="primary" icon="add" size="lg" :to="`${$route.path}/new`" >
+          <q-fab
+            v-if="canImport && !noCreateBtn"
+            v-model="fabIsOpen"
+            color="primary"
+            :flat="fabIsOpen"
+            icon="keyboard_arrow_up"
+            direction="up"
+          >
+            <q-fab-action
+              round
+              color="primary"
+              icon="add"
+              size="lg"
+              :to="`${$route.path}/new`"
+            >
               <tool-tip>{{ createBtnText }}</tool-tip>
             </q-fab-action>
-            <q-fab-action round color="secondary" icon="file_upload" size="lg" :to="`${$route.path}/import`" >
+            <q-fab-action
+              round
+              color="secondary"
+              icon="file_upload"
+              size="lg"
+              :to="`${$route.path}/import`"
+            >
               <tool-tip>{{ importBtnText }}</tool-tip>
             </q-fab-action>
           </q-fab>
-          <q-btn v-else-if="canImport" fab color="secondary" icon="file_upload" size="lg" :to="`${$route.path}/import`">
+          <q-btn
+            v-else-if="canImport"
+            fab
+            color="secondary"
+            icon="file_upload"
+            size="lg"
+            :to="`${$route.path}/import`"
+          >
             <tool-tip>{{ importBtnText }}</tool-tip>
           </q-btn>
-          <q-btn v-else-if="!noCreateBtn" fab color="primary" icon="add" size="lg" :to="`${$route.path}/new`">
+          <q-btn
+            v-else-if="!noCreateBtn"
+            fab
+            color="primary"
+            icon="add"
+            size="lg"
+            :to="`${$route.path}/new`"
+          >
             <tool-tip>{{ createBtnText }}</tool-tip>
           </q-btn>
         </slot>
@@ -50,16 +96,44 @@
     </component>
 
     <q-page-sticky expand position="top" v-if="!hideTitle && !isMobile">
-      <q-toolbar class="q-py-lg q-px-md bg-background" :class="{'print-hide': hideTitleOnPrint}">
+      <q-toolbar
+        class="q-py-lg q-px-md bg-background"
+        :class="{ 'print-hide': hideTitleOnPrint }"
+      >
         <div :class="toolbarClass" class="q-pl-none">
           <slot name="page-desktop-buttons">
-            <q-btn v-if="canImport" :to="`${$route.path}/import`" icon="file_upload" color="secondary" :label="importBtnText" class="float-right" :class="{'on-right': !noCreateBtn}" />
-            <q-btn v-if="!noCreateBtn" :to="`${$route.path}/new`" icon="add" color="primary" :label="createBtnText" class="float-right" />
+            <q-btn
+              v-if="canImport"
+              :to="`${$route.path}/import`"
+              icon="file_upload"
+              color="secondary"
+              :label="importBtnText"
+              class="float-right"
+              :class="{ 'on-right': !noCreateBtn }"
+            />
+            <q-btn
+              v-if="!noCreateBtn"
+              :to="`${$route.path}/new`"
+              icon="add"
+              color="primary"
+              :label="createBtnText"
+              class="float-right"
+            />
           </slot>
-          <div class="text-h4" :class="{'text-center': centerTitle}">
+          <div class="text-h4" :class="{ 'text-center': centerTitle }">
             {{ title }}
             <slot name="beside-title" />
-            <app-btn v-if="!noSorting" color="primary" icon="sort" tooltip="Sort Alphabetically" tooltip-right regular flat round @click="$emit('sort')" />
+            <app-btn
+              v-if="!noSorting"
+              color="primary"
+              icon="sort"
+              tooltip="Sort Alphabetically"
+              tooltip-right
+              regular
+              flat
+              round
+              @click="$emit('sort')"
+            />
           </div>
         </div>
       </q-toolbar>
@@ -127,6 +201,10 @@ export default {
       default: false
     },
     noInfiniteScroll: {
+      type: Boolean,
+      default: false
+    },
+    noPadding: {
       type: Boolean,
       default: false
     },
@@ -206,7 +284,9 @@ export default {
       this.$emit('refresh', done)
     },
     getWidthClasses (fullWidth) {
-      return fullWidth ? 'col-xs-12' : 'col-xs-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3'
+      return fullWidth
+        ? 'col-xs-12 col-lg-10 offset-lg-1 col-xl-8 offset-xl-2'
+        : 'col-xs-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3'
     }
   }
 }
@@ -215,7 +295,7 @@ export default {
 <style scoped>
 @media print {
   .print-pt-remove {
-    padding-top: 0!important
+    padding-top: 0 !important;
   }
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <q-table ref="table" :grid="isMobile" :columns="allColumns" v-bind="$attrs" v-on="$listeners">
+  <q-table ref="QTable" :grid="isMobile" :columns="allColumns" v-bind="$attrs" v-on="$listeners">
     <template #body-cell-serial="{ row }">
       <q-td>
       {{ row.__index + 1 }}

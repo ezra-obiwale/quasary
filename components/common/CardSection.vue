@@ -1,11 +1,11 @@
 <template>
-    <q-card-section class="row">
+    <q-card-section ref="QCardSection" class="row">
         <div class="col">
             <slot />
         </div>
         <div v-if="$slots['right-side'] || $slots['menu-list'] || $slots['menu-list-items']" class="col-auto">
           <slot name="right-side">
-            <q-btn color="primary" round flat icon="more_vert">
+            <q-btn ref="QBtn" color="primary" round flat icon="more_vert">
               <q-menu anchor="top left" self="top right" auto-close>
                   <slot name="menu-list">
                       <q-list>

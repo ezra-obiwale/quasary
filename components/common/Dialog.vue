@@ -1,6 +1,6 @@
 <template>
-  <q-dialog ref="dialog" v-bind="$attrs" v-on="$listeners">
-    <q-card :style="`width: ${width}`">
+  <q-dialog ref="QDialog" v-bind="$attrs" v-on="$listeners">
+    <q-card ref="QCard" :style="`width: ${width}`">
       <template v-if="title">
         <q-card-section>
           <div class="text-h6">{{ title }}</div>

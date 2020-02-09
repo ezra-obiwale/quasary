@@ -1,5 +1,5 @@
 <template>
-  <app-select :options="stateOptions" :loading="loading" @input="SELECT_STATE" v-bind="$attrs" v-on="$listeners">
+  <app-select ref="Select" :options="stateOptions" :loading="loading" @input="SELECT_STATE" v-bind="$attrs" v-on="$listeners">
     <slot />
   </app-select>
 </template>

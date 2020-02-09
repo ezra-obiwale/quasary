@@ -1,5 +1,5 @@
 <template>
-  <app-select :options="lgaOptions" :loading="loading"  v-bind="$attrs" v-on="$listeners">
+  <app-select ref="Select" :options="lgaOptions" :loading="loading"  v-bind="$attrs" v-on="$listeners">
     <slot />
   </app-select>
 </template>

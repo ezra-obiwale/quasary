@@ -1,5 +1,6 @@
 <template>
   <q-input
+    ref="QInput"
     v-model="model"
     v-bind="attrs"
     v-on="$listeners"
@@ -7,7 +8,7 @@
     @click="$refs.proxy.show()"
     >
     <template #append>
-      <q-icon name="access_time" class="cursor-pointer">
+      <q-icon ref="QIcon" name="access_time" class="cursor-pointer">
         <q-popup-proxy ref="proxy" transition-show="scale" transition-hide="scale">
           <q-time v-model="model" :mask="mask" @input="() => $refs.proxy.hide()" :now-btn="nowBtn" />
         </q-popup-proxy>

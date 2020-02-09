@@ -1,5 +1,6 @@
 <template>
   <q-scroll-area
+    ref="QScrollArea"
     :style="`height: ${height}`"
     :thumb-style="thumbStyle"
     :content-style="contentStyle"

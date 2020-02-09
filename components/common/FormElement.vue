@@ -1,5 +1,5 @@
 <template>
-  <app-element v-model="model" v-bind="attrs" v-on="$listeners">
+  <app-element ref="Element" v-model="model" v-bind="attrs" v-on="$listeners">
     <slot />
     <slot name="hint" slot="hint" />
   </app-element>

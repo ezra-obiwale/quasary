@@ -1,5 +1,5 @@
 <template>
-  <q-inner-loading :color="color" :size="size" v-bind="$attrs">
+  <q-inner-loading ref="QInnerLoading" :color="color" :size="size" v-bind="$attrs">
     <q-spinner-rings :size="size" :color="color" />
   </q-inner-loading>
 </template>

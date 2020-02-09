@@ -1,5 +1,6 @@
 <template>
   <q-input
+    ref="QInput"
     v-model="model"
     v-bind="attrs"
     v-on="$listeners"
@@ -7,7 +8,7 @@
     @click="$refs.proxy.show()"
     >
     <template #append>
-      <q-icon name="today" class="cursor-pointer">
+      <q-icon ref="QIcon" name="today" class="cursor-pointer">
         <q-popup-proxy ref="proxy" transition-show="scale" transition-hide="scale">
           <q-date v-model="model" :mask="mask" :options="options" today-btn @input="() => $refs.proxy.hide()" />
         </q-popup-proxy>

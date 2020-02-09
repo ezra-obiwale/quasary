@@ -1,6 +1,6 @@
 <template>
-  <q-dialog auto-close v-model="model">
-    <q-list bordered separator padding class="bg-white full-width q-py-none">
+  <q-dialog ref="QDialog" auto-close v-model="model">
+    <q-list ref="QList" bordered separator padding class="bg-white full-width q-py-none">
       <slot />
     </q-list>
   </q-dialog>

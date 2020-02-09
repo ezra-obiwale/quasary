@@ -1,5 +1,5 @@
 <template>
-  <q-form ref="form" class="q-gutter-y-md" v-bind="$attrs" v-on="$listeners">
+  <q-form ref="QForm" class="q-gutter-y-md" v-bind="$attrs" v-on="$listeners">
     <slot />
     <div class="text-center">
       <q-separator v-if="!isMobile" class="q-mb-md" />
