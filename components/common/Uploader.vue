@@ -5,7 +5,7 @@
         {{ previewText }}
       </div>
     </q-img>
-    <q-uploader ref="QUploader" v-show="canShowUploader" ref="uploader" class="full-width" :accept="accept" :field-name="fieldName" :headers="theHeaders" :url="theUrl" v-bind="$attrs" v-on="$listeners" @added="hasFile = true" @removed="hasFile = false" @uploaded="uploaded" @failed="failed" hide-upload-btn />
+    <q-uploader ref="QUploader" v-show="canShowUploader" class="full-width" :accept="accept" :field-name="fieldName" :headers="theHeaders" :url="theUrl" v-bind="$attrs" v-on="$listeners" @added="hasFile = true" @removed="hasFile = false" @uploaded="uploaded" @failed="failed" hide-upload-btn />
   </div>
 </template>
 
