@@ -1,23 +1,74 @@
 <template>
-  <q-card-actions ref="QCardActions" :class="{'bg-primary-light': confirmDelete}">
+  <q-card-actions
+    ref="QCardActions"
+    :class="{'bg-primary-light': confirmDelete}"
+  >
     <template v-if="confirmDelete">
-      <div class="on-left q-mt-sm" :class="{'text-negative': deleteErrorMessage}">{{ deleteMessage }}</div>
+      <div
+        class="on-left q-mt-sm"
+        :class="{'text-negative': deleteErrorMessage}"
+      >{{ deleteMessage }}</div>
       <div class="text-right">
-        <q-btn class="on-left" :loading="deleting" :disabled="deleting" flat :label="deleteErrorMessage ? 'Retry?' : 'Yes'" color="negative" @click="emitDelete" />
-        <q-btn v-if="!deleting" flat label="No" color="primary" @click="cancelDelete" />
+        <q-btn
+          class="on-left"
+          :loading="deleting"
+          :disabled="deleting"
+          flat
+          :label="deleteErrorMessage ? 'Retry?' : 'Yes'"
+          color="negative"
+          @click="emitDelete"
+        />
+        <q-btn
+          v-if="!deleting"
+          flat
+          label="No"
+          color="primary"
+          @click="cancelDelete"
+        />
       </div>
     </template>
     <template v-else>
       <slot name="before" />
-      <q-btn ref="QBtnEdit" v-if="!noEdit" flat :label="iconsOnly ? '' : 'Edit'" :icon="noIcons ? '' : 'edit'" color="primary" @click="edit" />
-      <q-btn ref="QBtnDelete" v-if="!noDelete" flat :label="iconsOnly ? '' : 'Delete'" :icon="noIcons ? '' : 'delete'" color="negative" @click="confirmDelete = true" />
+      <q-btn
+        ref="QBtnEdit"
+        v-if="!noEdit"
+        flat
+        :label="iconsOnly ? '' : 'Edit'"
+        :icon="noIcons ? '' : 'edit'"
+        color="primary"
+        @click="edit"
+      />
+      <q-btn
+        ref="QBtnDelete"
+        v-if="!noDelete"
+        flat
+        :label="iconsOnly ? '' : 'Delete'"
+        :icon="noIcons ? '' : 'delete'"
+        color="negative"
+        @click="confirmDelete = true"
+      />
       <slot name="after" />
     </template>
-    <template v-for="(slot, key) in $slots" :slot="key">
-      <slot :name="key" />
+
+    <template
+      v-for="(fn, key) in $slots"
+      :slot="usedSlots.includes(key) ? undefined : key"
+    >
+      <slot
+        v-if="!usedSlots.includes(key)"
+        :name="key"
+      />
     </template>
-    <template v-for="(slot, key) in $scopedSlots" :slot="key" slot-scope="scope">
-      <slot :name="key" v-bind="scope" />
+    <template
+      v-for="(fn, key) in $scopedSlots"
+      :slot="usedSlots.includes(key) ? undefined : key"
+      slot-scope="scope"
+    >
+      <slot
+        v-if="!usedSlots.includes(key)"
+        :name="key"
+        v-bind="scope"
+      />
     </template>
   </q-card-actions>
 </template>
@@ -66,7 +117,8 @@ export default {
   },
   data () {
     return {
-      confirmDelete: false
+      confirmDelete: false,
+      usedSlots: ['default', 'before', 'after']
     }
   },
   computed: {
@@ -96,6 +148,6 @@ export default {
 
 <style lang="stylus" scoped>
 .bg-primary-light {
-  background-color: lighten($primary, 50)
+  background-color: lighten($primary, 50);
 }
 </style>

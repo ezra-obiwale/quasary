@@ -5,6 +5,27 @@
   >
     <div class="col">
       <slot />
+
+      <template
+        v-for="(fn, key) in $slots"
+        :slot="usedSlots.includes(key) ? undefined : key"
+      >
+        <slot
+          v-if="!usedSlots.includes(key)"
+          :name="key"
+        />
+      </template>
+      <template
+        v-for="(fn, key) in $scopedSlots"
+        :slot="usedSlots.includes(key) ? undefined : key"
+        slot-scope="scope"
+      >
+        <slot
+          v-if="!usedSlots.includes(key)"
+          :name="key"
+          v-bind="scope"
+        />
+      </template>
     </div>
     <div
       v-if="$slots['right-side'] || $slots['menu-list'] || $slots['menu-list-items']"
@@ -32,11 +53,16 @@
         </q-btn>
       </slot>
     </div>
-    <template v-for="(slot, key) in $slots" :slot="key">
-      <slot :name="key" />
-    </template>
-    <template v-for="(slot, key) in $scopedSlots" :slot="key" slot-scope="scope">
-      <slot :name="key" v-bind="scope" />
-    </template>
   </q-card-section>
 </template>
+
+<script>
+export default {
+  name: 'CardSectionComponent',
+  data () {
+    return {
+      usedSlots: ['default', 'right-side', 'menu-list', 'menu-list-items']
+    }
+  }
+}
+</script>

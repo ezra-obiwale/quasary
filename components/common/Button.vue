@@ -1,14 +1,44 @@
 <template>
-  <q-btn ref="QBtn" :loading="loading" :disabled="loading" :color="color" :class="{ 'full-width' : !regular }" :size="actualSize" v-bind="$attrs" v-on="$listeners">
+  <q-btn
+    ref="QBtn"
+    :loading="loading"
+    :disabled="loading"
+    :color="color"
+    :class="{ 'full-width' : !regular }"
+    :size="actualSize"
+    v-bind="$attrs"
+    v-on="$listeners"
+  >
     <template #loading>
       <q-spinner-rings />
     </template>
-    <tool-tip v-if="tooltip" :left="tooltipLeft" :right="tooltipRight" :bottom="tooltipBottom" :top="tooltipTop">{{ tooltip }}</tool-tip>
-    <template v-for="(slot, key) in $slots" :slot="key">
-      <slot :name="key" />
+    <tool-tip
+      v-if="tooltip"
+      :left="tooltipLeft"
+      :right="tooltipRight"
+      :bottom="tooltipBottom"
+      :top="tooltipTop"
+    >{{ tooltip }}</tool-tip>
+
+    <template
+      v-for="(fn, key) in $slots"
+      :slot="usedSlots.includes(key) ? undefined : key"
+    >
+      <slot
+        v-if="!usedSlots.includes(key)"
+        :name="key"
+      />
     </template>
-    <template v-for="(slot, key) in $scopedSlots" :slot="key" slot-scope="scope">
-      <slot :name="key" v-bind="scope" />
+    <template
+      v-for="(fn, key) in $scopedSlots"
+      :slot="usedSlots.includes(key) ? undefined : key"
+      slot-scope="scope"
+    >
+      <slot
+        v-if="!usedSlots.includes(key)"
+        :name="key"
+        v-bind="scope"
+      />
     </template>
   </q-btn>
 </template>
@@ -52,6 +82,11 @@ export default {
     tooltipTop: {
       type: Boolean,
       default: false
+    }
+  },
+  data () {
+    return {
+      usedSlots: ['default', 'loading']
     }
   },
   computed: {

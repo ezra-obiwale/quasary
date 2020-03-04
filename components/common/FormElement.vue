@@ -1,20 +1,46 @@
 <template>
-  <app-element ref="Element" v-model="model" v-bind="attrs" v-on="$listeners">
-    <template v-for="(slot, key) in $slots" :slot="key">
-      <slot :name="key" />
+  <app-element
+    ref="Element"
+    v-model="model"
+    v-bind="attrs"
+    v-on="$listeners"
+  >
+    <slot />
+
+    <template
+      v-for="(fn, key) in $slots"
+      :slot="usedSlots.includes(key) ? undefined : key"
+    >
+      <slot
+        v-if="!usedSlots.includes(key)"
+        :name="key"
+      />
     </template>
-    <template v-for="(slot, key) in $scopedSlots" :slot="key" slot-scope="scope">
-      <slot :name="key" v-bind="scope" />
+    <template
+      v-for="(fn, key) in $scopedSlots"
+      :slot="usedSlots.includes(key) ? undefined : key"
+      slot-scope="scope"
+    >
+      <slot
+        v-if="!usedSlots.includes(key)"
+        :name="key"
+        v-bind="scope"
+      />
     </template>
   </app-element>
 </template>
 
 <script>
-import attrs from '../../mixins/FormElement'
+import attrs from '../mixins/FormElement'
 
 export default {
   name: 'FormElementComponent',
-  mixins: [attrs]
+  mixins: [attrs],
+  data () {
+    return {
+      usedSlots: ['default']
+    }
+  }
 }
 </script>
 

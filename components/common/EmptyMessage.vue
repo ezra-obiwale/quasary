@@ -1,6 +1,14 @@
 <template>
-  <div class="text-center text-weight-light" :style="`margin-top: ${margins || topMargin}; margin-bottom: ${margins || bottomMargin}`">
-    <q-icon :name="icon" color="grey" :size="size" class="q-mb-lg" />
+  <div
+    class="text-center text-weight-light"
+    :style="`margin-top: ${margins || topMargin}; margin-bottom: ${margins || bottomMargin}`"
+  >
+    <q-icon
+      :name="icon"
+      color="grey"
+      :size="size"
+      class="q-mb-lg"
+    />
     <br />
     <slot />
   </div>

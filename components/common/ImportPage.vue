@@ -1,18 +1,64 @@
 <template>
-  <app-page ref="Page" can-go-back no-create-btn full-width no-infinite-scroll no-pull-to-refresh :title="`Import ${capitalizedItem}`" :icon="icon" :working="working">
-    <template v-if="templateUrl || fileAdded" #page-desktop-buttons>
-      <q-btn :disabled="fileAdded && !canSave" :label="btnLabel" :icon="btnIcon" class="float-right" color="primary" @click="btnClicked" />
+  <app-page
+    ref="Page"
+    can-go-back
+    no-create-btn
+    full-width
+    no-infinite-scroll
+    no-pull-to-refresh
+    :title="`Import ${capitalizedItem}`"
+    :icon="icon"
+    :working="working"
+  >
+    <template
+      v-if="templateUrl || fileAdded"
+      #page-desktop-buttons
+    >
+      <q-btn
+        :disabled="fileAdded && !canSave"
+        :label="btnLabel"
+        :icon="btnIcon"
+        class="float-right"
+        color="primary"
+        @click="btnClicked"
+      />
     </template>
-    <template v-if="templateUrl || fileAdded" #page-mobile-buttons>
-      <q-btn :disabled="fileAdded && !canSave" fab :icon="btnIcon" class="float-right" color="primary" @click="btnClicked">
+    <template
+      v-if="templateUrl || fileAdded"
+      #page-mobile-buttons
+    >
+      <q-btn
+        :disabled="fileAdded && !canSave"
+        fab
+        :icon="btnIcon"
+        class="float-right"
+        color="primary"
+        @click="btnClicked"
+      >
         <tool-tip>{{ btnLabel }}</tool-tip>
       </q-btn>
     </template>
     <template>
       <slot name="before-uploader" />
-      <app-uploader ref="uploader" :factory="uploadFactory" accept=".xls,.xlsx,.csv" label="Select File" :url="uploadUrl" v-bind="$attrs" @added="process" @removed="clear" @start="working = true" @finish="working = false" @uploaded="success" @failed="failed" />
+      <app-uploader
+        ref="uploader"
+        :factory="uploadFactory"
+        accept=".xls,.xlsx,.csv"
+        label="Select File"
+        :url="uploadUrl"
+        v-bind="$attrs"
+        @added="process"
+        @removed="clear"
+        @start="working = true"
+        @finish="working = false"
+        @uploaded="success"
+        @failed="failed"
+      />
       <slot name="before-table" />
-      <q-card class="q-mt-md" v-if="Object.keys(mapFields).length && rows.length">
+      <q-card
+        class="q-mt-md"
+        v-if="Object.keys(mapFields).length && rows.length"
+      >
         <q-card-section>
           <label style="color: inherit">
             <q-toggle
@@ -28,7 +74,6 @@
           <thead>
             <tr>
               <th
-                scope="col"
                 v-for="(column, index) in rows[0]"
                 :key="`column-${index}`"
               >
@@ -43,7 +88,10 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="(row, rowIndex) in rows" :key="`row-${rowIndex}`">
+            <tr
+              v-for="(row, rowIndex) in rows"
+              :key="`row-${rowIndex}`"
+            >
               <td
                 v-for="(col, colIndex) in row"
                 :key="`row-${rowIndex}-column-${colIndex}`"
@@ -54,11 +102,32 @@
       </q-card>
       <slot name="after-table" />
     </template>
+
+    <template
+      v-for="(fn, key) in $slots"
+      :slot="usedSlots.includes(key) ? undefined : key"
+    >
+      <slot
+        v-if="!usedSlots.includes(key)"
+        :name="key"
+      />
+    </template>
+    <template
+      v-for="(fn, key) in $scopedSlots"
+      :slot="usedSlots.includes(key) ? undefined : key"
+      slot-scope="scope"
+    >
+      <slot
+        v-if="!usedSlots.includes(key)"
+        :name="key"
+        v-bind="scope"
+      />
+    </template>
   </app-page>
 </template>
 
 <script>
-import importMixin from '../../mixins/Importing'
+import importMixin from '../mixins/Importing'
 
 export default {
   name: 'ImportPageComponent',
@@ -113,6 +182,7 @@ export default {
       skipFirstRow: true,
       mappings: {},
       rows: [],
+      usedSlots: ['default', 'page-desktop-buttons', 'page-mobile-buttons', 'before-uploader', 'before-table', 'after-table'],
       working: false
     }
   },

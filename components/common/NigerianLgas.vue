@@ -1,10 +1,32 @@
 <template>
-  <app-select ref="Select" :options="lgaOptions" :loading="loading"  v-bind="$attrs" v-on="$listeners">
-    <template v-for="(slot, key) in $slots" :slot="key">
-      <slot :name="key" />
+  <app-select
+    ref="Select"
+    :options="lgaOptions"
+    :loading="loading"
+    v-bind="$attrs"
+    v-on="$listeners"
+  >
+    <slot />
+
+    <template
+      v-for="(fn, key) in $slots"
+      :slot="usedSlots.includes(key) ? undefined : key"
+    >
+      <slot
+        v-if="!usedSlots.includes(key)"
+        :name="key"
+      />
     </template>
-    <template v-for="(slot, key) in $scopedSlots" :slot="key" slot-scope="scope">
-      <slot :name="key" v-bind="scope" />
+    <template
+      v-for="(fn, key) in $scopedSlots"
+      :slot="usedSlots.includes(key) ? undefined : key"
+      slot-scope="scope"
+    >
+      <slot
+        v-if="!usedSlots.includes(key)"
+        :name="key"
+        v-bind="scope"
+      />
     </template>
   </app-select>
 </template>
@@ -31,7 +53,8 @@ export default {
   data () {
     return {
       canResetValue: false,
-      loading: false
+      loading: false,
+      usedSlots: ['default']
     }
   },
   computed: {

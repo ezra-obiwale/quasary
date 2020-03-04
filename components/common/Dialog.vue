@@ -1,6 +1,13 @@
 <template>
-  <q-dialog ref="QDialog" v-bind="$attrs" v-on="$listeners">
-    <q-card ref="QCard" :style="`width: ${width}`">
+  <q-dialog
+    ref="QDialog"
+    v-bind="$attrs"
+    v-on="$listeners"
+  >
+    <q-card
+      ref="QCard"
+      :style="`width: ${width}`"
+    >
       <template v-if="title">
         <q-card-section>
           <div class="text-h6">{{ title }}</div>
@@ -9,17 +16,31 @@
         <q-separator />
       </template>
 
-      <q-card-section :style="`max-height: ${maxHeight}`" class="scroll">
+      <q-card-section
+        :style="`max-height: ${maxHeight}`"
+        class="scroll"
+      >
         <slot />
       </q-card-section>
 
-      <slot v-if="!noActions" name="actions">
-          <q-separator />
+      <slot
+        v-if="!noActions"
+        name="actions"
+      >
+        <q-separator />
 
-          <q-card-actions align="right">
-            <q-btn v-if="!noOkBtn" v-bind="okBtn" @click="$emit('ok')" />
-            <q-btn v-if="!noCloseBtn" v-bind="closeBtn" @click="$emit('close')" />
-          </q-card-actions>
+        <q-card-actions align="right">
+          <q-btn
+            v-if="!noOkBtn"
+            v-bind="okBtn"
+            @click="$emit('ok')"
+          />
+          <q-btn
+            v-if="!noCloseBtn"
+            v-bind="closeBtn"
+            @click="$emit('close')"
+          />
+        </q-card-actions>
       </slot>
       <template v-for="(slot, key) in $slots" :slot="key">
         <slot :name="key" />
@@ -66,6 +87,11 @@ export default {
     width: {
       type: String,
       default: 'auto'
+    }
+  },
+  data () {
+    return {
+      usedSlots: ['default', 'actions']
     }
   },
   methods: {

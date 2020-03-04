@@ -1,6 +1,30 @@
 <template>
-  <q-tooltip :anchor="anchor" :self="self">
+  <q-tooltip
+    :anchor="anchor"
+    :self="self"
+  >
     <slot />
+
+    <template
+      v-for="(fn, key) in $slots"
+      :slot="usedSlots.includes(key) ? undefined : key"
+    >
+      <slot
+        v-if="!usedSlots.includes(key)"
+        :name="key"
+      />
+    </template>
+    <template
+      v-for="(fn, key) in $scopedSlots"
+      :slot="usedSlots.includes(key) ? undefined : key"
+      slot-scope="scope"
+    >
+      <slot
+        v-if="!usedSlots.includes(key)"
+        :name="key"
+        v-bind="scope"
+      />
+    </template>
   </q-tooltip>
 </template>
 
@@ -23,6 +47,11 @@ export default {
     top: {
       type: Boolean,
       default: false
+    }
+  },
+  data () {
+    return {
+      usedSlots: ['default']
     }
   },
   computed: {
