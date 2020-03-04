@@ -21,6 +21,12 @@
             <q-btn v-if="!noCloseBtn" v-bind="closeBtn" @click="$emit('close')" />
           </q-card-actions>
       </slot>
+      <template v-for="(slot, key) in $slots" :slot="key">
+        <slot :name="key" />
+      </template>
+      <template v-for="(slot, key) in $scopedSlots" :slot="key" slot-scope="scope">
+        <slot :name="key" v-bind="scope" />
+      </template>
     </q-card>
   </q-dialog>
 </template>

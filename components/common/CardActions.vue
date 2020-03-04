@@ -13,6 +13,12 @@
       <q-btn ref="QBtnDelete" v-if="!noDelete" flat :label="iconsOnly ? '' : 'Delete'" :icon="noIcons ? '' : 'delete'" color="negative" @click="confirmDelete = true" />
       <slot name="after" />
     </template>
+    <template v-for="(slot, key) in $slots" :slot="key">
+      <slot :name="key" />
+    </template>
+    <template v-for="(slot, key) in $scopedSlots" :slot="key" slot-scope="scope">
+      <slot :name="key" v-bind="scope" />
+    </template>
   </q-card-actions>
 </template>
 

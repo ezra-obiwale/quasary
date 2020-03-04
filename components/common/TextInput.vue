@@ -1,7 +1,10 @@
 <template>
   <q-input ref="QInput" v-model="model" v-bind="attrs" v-on="$listeners">
-    <template v-for="(fn, slot) in $slots" :slot="slot" slot-scope="scope">
-      <slot :name="slot" v-bind="scope" />
+    <template v-for="(slot, key) in $slots" :slot="key">
+      <slot :name="key" />
+    </template>
+    <template v-for="(slot, key) in $scopedSlots" :slot="key" slot-scope="scope">
+      <slot :name="key" v-bind="scope" />
     </template>
   </q-input>
 </template>

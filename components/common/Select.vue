@@ -1,7 +1,11 @@
 <template>
   <form-element ref="FormElement" tag="q-select" :emit-value="emitValue" :map-options="emitValue" :multiple="multiple" :use-chips="multiple" :display-value-sanitize="!htmlOptions" :options-sanitize="!htmlOptions" :options-selected-class="!showSelectedOption ? 'hidden' : ''" v-bind="$attrs" v-on="$listeners">
-    <slot />
-    <slot name="hint" slot="hint" />
+    <template v-for="(slot, key) in $slots" :slot="key">
+      <slot :name="key" />
+    </template>
+    <template v-for="(slot, key) in $scopedSlots" :slot="key" slot-scope="scope">
+      <slot :name="key" v-bind="scope" />
+    </template>
   </form-element>
 </template>
 

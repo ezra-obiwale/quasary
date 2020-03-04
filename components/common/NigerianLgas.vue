@@ -1,6 +1,11 @@
 <template>
   <app-select ref="Select" :options="lgaOptions" :loading="loading"  v-bind="$attrs" v-on="$listeners">
-    <slot />
+    <template v-for="(slot, key) in $slots" :slot="key">
+      <slot :name="key" />
+    </template>
+    <template v-for="(slot, key) in $scopedSlots" :slot="key" slot-scope="scope">
+      <slot :name="key" v-bind="scope" />
+    </template>
   </app-select>
 </template>
 

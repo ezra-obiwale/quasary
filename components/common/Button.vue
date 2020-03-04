@@ -4,6 +4,12 @@
       <q-spinner-rings />
     </template>
     <tool-tip v-if="tooltip" :left="tooltipLeft" :right="tooltipRight" :bottom="tooltipBottom" :top="tooltipTop">{{ tooltip }}</tool-tip>
+    <template v-for="(slot, key) in $slots" :slot="key">
+      <slot :name="key" />
+    </template>
+    <template v-for="(slot, key) in $scopedSlots" :slot="key" slot-scope="scope">
+      <slot :name="key" v-bind="scope" />
+    </template>
   </q-btn>
 </template>
 

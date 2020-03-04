@@ -1,6 +1,11 @@
 <template>
   <q-form ref="QForm" class="q-gutter-y-md" v-bind="$attrs" v-on="$listeners">
-    <slot />
+    <template v-for="(slot, key) in $slots" :slot="key">
+      <slot :name="key" />
+    </template>
+    <template v-for="(slot, key) in $scopedSlots" :slot="key" slot-scope="scope">
+      <slot :name="key" v-bind="scope" />
+    </template>
     <div class="text-center">
       <q-separator v-if="!isMobile" class="q-mb-md" />
       <stickable-btn type="submit" mobile-icon="check" :loading="working" :label="btnLabel" :regular="regularBtn" :non-sticky="nonStickyBtn" />

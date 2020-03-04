@@ -11,6 +11,12 @@
     <template #no-items-message>
       No {{ assign }} have been assigned yet
     </template>
+    <template v-for="(slot, key) in $slots" :slot="key">
+      <slot :name="key" />
+    </template>
+    <template v-for="(slot, key) in $scopedSlots" :slot="key" slot-scope="scope">
+      <slot :name="key" v-bind="scope" />
+    </template>
   </relations-page>
 </template>
 
