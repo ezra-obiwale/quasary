@@ -1,15 +1,41 @@
 <template>
-  <relations-page ref="relations" :title="`Assign ${assignAlias || assign} ${assigneeName ? `to ${assigneeName}` : ''} `" :collection="assign" :query="itemsQuery" :items-type="itemsAlias || items" :removed-items="removed" :save-fn="save" :selection-component="selectionComponent" :selection-component-attrs="selectionComponentAttrs" watch-items @itemsUpdated="gotItems" v-bind="$attrs" v-on="$listeners">
+  <relations-page
+    ref="relations"
+    :title="`Assign ${assignAlias || assign} ${assigneeName ? `to ${assigneeName}` : ''} `"
+    :collection="assign"
+    :query="itemsQuery"
+    :items-type="itemsAlias || items"
+    :removed-items="removed"
+    :save-fn="save"
+    :selection-component="selectionComponent"
+    :selection-component-attrs="selectionComponentAttrs"
+    watch-items
+    @itemsUpdated="gotItems"
+    v-bind="$attrs"
+    v-on="$listeners"
+  >
     <template #each-item-content="{ index, item, items }">
       <q-item-section>
         {{ getItemName(item) }}
       </q-item-section>
       <q-item-section side>
-        <q-btn icon="delete" color="negative" flat round @click="removeItem(index, items)" />
+        <q-btn
+          icon="delete"
+          color="negative"
+          flat
+          round
+          @click="removeItem(index, items)"
+        />
       </q-item-section>
     </template>
     <template #no-items-message>
       No {{ assign }} have been assigned yet
+    </template>
+    <template v-for="(slot, key) in $slots" :slot="key">
+      <slot v-if="!usedSlots.includes(key)" :name="key" />
+    </template>
+    <template v-for="(slot, key) in $scopedSlots" :slot="key" slot-scope="scope">
+      <slot v-if="!usedSlots.includes(key)" :name="key" v-bind="scope" />
     </template>
   </relations-page>
 </template>
@@ -66,7 +92,8 @@ export default {
       assignee: {},
       itemsQuery: { ...itemsQuery, ...(this.selectionComponentAttrs.query || {}) },
       relationsItems: [],
-      removed: []
+      removed: [],
+      usedSlots: ['default', 'eachItemContent', 'noItemsMessage']
     }
   },
   computed: {

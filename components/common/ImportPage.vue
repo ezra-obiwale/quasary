@@ -58,7 +58,7 @@
 </template>
 
 <script>
-import importMixin from '../../mixins/Importing'
+import importMixin from '../mixins/Importing'
 
 export default {
   name: 'ImportPageComponent',

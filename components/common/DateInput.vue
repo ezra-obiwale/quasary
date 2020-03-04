@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import DateMixin from '../../mixins/Date'
+import DateMixin from '../mixins/Date'
 
 export default {
   name: 'DateInputComponent',

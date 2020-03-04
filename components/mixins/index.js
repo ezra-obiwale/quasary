@@ -7,10 +7,3 @@ export const Date = DateMixin
 export const FormElement = FormElementMixin
 export const Importing = ImportingMixin
 export const Sort = SortMixin
-
-export default {
-  Date,
-  FormElement,
-  Importing,
-  Sort
-}

@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import attrs from '../../mixins/FormElement'
+import attrs from '../mixins/FormElement'
 
 export default {
   name: 'FormElementComponent',

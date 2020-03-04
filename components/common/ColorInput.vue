@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import FormElementMixin from '../../mixins/FormElement'
+import FormElementMixin from '../mixins/FormElement'
 
 export default {
   name: 'ColorInputComponent',
