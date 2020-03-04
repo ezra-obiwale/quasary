@@ -14,7 +14,7 @@
 
     <template
       v-for="(fn, key) in $slots"
-      :slot="key"
+      :slot="usedSlots.includes(key) ? undefined : key"
     >
       <slot
         v-if="!usedSlots.includes(key)"
@@ -23,7 +23,7 @@
     </template>
     <template
       v-for="(fn, key) in $scopedSlots"
-      :slot="key"
+      :slot="usedSlots.includes(key) ? undefined : key"
       slot-scope="scope"
     >
       <slot
