@@ -1,7 +1,39 @@
 <template>
-  <form-element ref="FormElement" tag="q-select" :emit-value="emitValue" :map-options="emitValue" :multiple="multiple" :use-chips="multiple" :display-value-sanitize="!htmlOptions" :options-sanitize="!htmlOptions" :options-selected-class="!showSelectedOption ? 'hidden' : ''" v-bind="$attrs" v-on="$listeners">
+  <form-element
+    ref="FormElement"
+    tag="q-select"
+    :emit-value="emitValue"
+    :map-options="emitValue"
+    :multiple="multiple"
+    :use-chips="multiple"
+    :display-value-sanitize="!htmlOptions"
+    :options-sanitize="!htmlOptions"
+    :options-selected-class="!showSelectedOption ? 'hidden' : ''"
+    v-bind="$attrs"
+    v-on="$listeners"
+  >
     <slot />
-    <slot name="hint" slot="hint" />
+
+    <template
+      v-for="(fn, key) in $slots"
+      :slot="key"
+    >
+      <slot
+        v-if="!usedSlots.includes(key)"
+        :name="key"
+      />
+    </template>
+    <template
+      v-for="(fn, key) in $scopedSlots"
+      :slot="key"
+      slot-scope="scope"
+    >
+      <slot
+        v-if="!usedSlots.includes(key)"
+        :name="key"
+        v-bind="scope"
+      />
+    </template>
   </form-element>
 </template>
 
@@ -24,6 +56,11 @@ export default {
     showSelectedOption: {
       type: Boolean,
       default: false
+    }
+  },
+  data () {
+    return {
+      usedSlots: ['default']
     }
   }
 }

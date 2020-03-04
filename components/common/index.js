@@ -26,8 +26,6 @@ import TimeInput from './TimeInput'
 import ToolTip from './ToolTip'
 import Uploader from './Uploader'
 
-import mixins from '@ezraobiwale/quasary/mixins'
-
 export default {
   AssignItemsPage,
   Button,
@@ -55,7 +53,5 @@ export default {
   TextInput,
   TimeInput,
   ToolTip,
-  Uploader,
-
-  mixins
+  Uploader
 }

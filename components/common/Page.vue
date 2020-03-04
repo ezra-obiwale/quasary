@@ -19,7 +19,10 @@
           <div class="row">
             <div :class="localCardClass">
               <slot name="card">
-                <q-card :class="cardClass" :style="cardStyle">
+                <q-card
+                  :class="cardClass"
+                  :style="cardStyle"
+                >
                   <q-card-section>
                     <slot name="card-content" />
                   </q-card-section>
@@ -35,7 +38,11 @@
         </slot>
       </component>
 
-      <q-page-sticky v-if="isMobile" position="bottom-right" :offset="[18, 18]">
+      <q-page-sticky
+        v-if="isMobile"
+        position="bottom-right"
+        :offset="[18, 18]"
+      >
         <slot name="page-mobile-buttons">
           <q-fab
             v-if="canImport && !noCreateBtn"
@@ -89,18 +96,31 @@
 
       <app-loading :showing="working" />
       <template #loading>
-        <div v-if="canLoadMore" class="row justify-center q-my-md">
-          <q-spinner-rings color="primary" size="60px" />
+        <div
+          v-if="canLoadMore"
+          class="row justify-center q-my-md"
+        >
+          <q-spinner-rings
+            color="primary"
+            size="60px"
+          />
         </div>
       </template>
     </component>
 
-    <q-page-sticky expand position="top" v-if="!hideTitle && !isMobile">
+    <q-page-sticky
+      expand
+      position="top"
+      v-if="!hideTitle && !isMobile"
+    >
       <q-toolbar
         class="q-py-lg q-px-md bg-background"
         :class="{ 'print-hide': hideTitleOnPrint }"
       >
-        <div :class="toolbarClass" class="q-pl-none">
+        <div
+          :class="toolbarClass"
+          class="q-pl-none"
+        >
           <slot name="page-desktop-buttons">
             <q-btn
               v-if="canImport"
@@ -120,7 +140,10 @@
               class="float-right"
             />
           </slot>
-          <div class="text-h4" :class="{ 'text-center': centerTitle }">
+          <div
+            class="text-h4"
+            :class="{ 'text-center': centerTitle }"
+          >
             {{ title }}
             <slot name="beside-title" />
             <app-btn

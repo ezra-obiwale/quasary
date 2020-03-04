@@ -1,6 +1,34 @@
 <template>
-  <app-select ref="Select" :options="stateOptions" :loading="loading" @input="SELECT_STATE" v-bind="$attrs" v-on="$listeners">
+  <app-select
+    ref="Select"
+    :options="stateOptions"
+    :loading="loading"
+    @input="SELECT_STATE"
+    v-bind="$attrs"
+    v-on="$listeners"
+  >
     <slot />
+
+    <template
+      v-for="(fn, key) in $slots"
+      :slot="key"
+    >
+      <slot
+        v-if="!usedSlots.includes(key)"
+        :name="key"
+      />
+    </template>
+    <template
+      v-for="(fn, key) in $scopedSlots"
+      :slot="key"
+      slot-scope="scope"
+    >
+      <slot
+        v-if="!usedSlots.includes(key)"
+        :name="key"
+        v-bind="scope"
+      />
+    </template>
   </app-select>
 </template>
 
@@ -16,7 +44,8 @@ export default {
   },
   data () {
     return {
-      loading: true
+      loading: true,
+      usedSlots: ['default']
     }
   },
   computed: {

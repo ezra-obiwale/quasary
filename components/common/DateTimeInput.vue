@@ -4,20 +4,68 @@
     v-model="model"
     v-bind="attrs"
     v-on="$listeners"
-    >
+  >
     <template #prepend>
-      <q-icon ref="QIconPrepend" name="event" class="cursor-pointer">
-        <q-popup-proxy ref="dateProxy" transition-show="scale" transition-hide="scale">
-          <q-date v-model="model" :mask="mask" today-btn :options="options" @input="() => $refs.dateProxy.hide()" />
+      <q-icon
+        ref="QIconPrepend"
+        name="event"
+        class="cursor-pointer"
+      >
+        <q-popup-proxy
+          ref="dateProxy"
+          transition-show="scale"
+          transition-hide="scale"
+        >
+          <q-date
+            v-model="model"
+            :mask="mask"
+            today-btn
+            :options="options"
+            @input="() => $refs.dateProxy.hide()"
+          />
         </q-popup-proxy>
       </q-icon>
     </template>
     <template #append>
-      <q-icon ref="QIconAppend" name="access_time" class="cursor-pointer">
-        <q-popup-proxy ref="timeProxy" transition-show="scale" transition-hide="scale">
-          <q-time v-model="model" :mask="mask" :options="options" @input="() => $refs.timeProxy.hide()" />
+      <q-icon
+        ref="QIconAppend"
+        name="access_time"
+        class="cursor-pointer"
+      >
+        <q-popup-proxy
+          ref="timeProxy"
+          transition-show="scale"
+          transition-hide="scale"
+        >
+          <q-time
+            v-model="model"
+            :mask="mask"
+            :options="options"
+            @input="() => $refs.timeProxy.hide()"
+          />
         </q-popup-proxy>
       </q-icon>
+    </template>
+
+    <template
+      v-for="(fn, key) in $slots"
+      :slot="key"
+    >
+      <slot
+        v-if="!usedSlots.includes(key)"
+        :name="key"
+      />
+    </template>
+    <template
+      v-for="(fn, key) in $scopedSlots"
+      :slot="key"
+      slot-scope="scope"
+    >
+      <slot
+        v-if="!usedSlots.includes(key)"
+        :name="key"
+        v-bind="scope"
+      />
     </template>
   </q-input>
 </template>
@@ -36,6 +84,11 @@ export default {
     value: {
       type: [Number, String, Date],
       default: () => new Date()
+    }
+  },
+  data () {
+    return {
+      usedSlots: ['default', 'append', 'prepend']
     }
   }
 }

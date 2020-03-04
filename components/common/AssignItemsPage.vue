@@ -31,11 +31,26 @@
     <template #no-items-message>
       No {{ assign }} have been assigned yet
     </template>
-    <template v-for="(slot, key) in $slots" :slot="key">
-      <slot v-if="!usedSlots.includes(key)" :name="key" />
+
+    <template
+      v-for="(fn, key) in $slots"
+      :slot="key"
+    >
+      <slot
+        v-if="!usedSlots.includes(key)"
+        :name="key"
+      />
     </template>
-    <template v-for="(slot, key) in $scopedSlots" :slot="key" slot-scope="scope">
-      <slot v-if="!usedSlots.includes(key)" :name="key" v-bind="scope" />
+    <template
+      v-for="(fn, key) in $scopedSlots"
+      :slot="key"
+      slot-scope="scope"
+    >
+      <slot
+        v-if="!usedSlots.includes(key)"
+        :name="key"
+        v-bind="scope"
+      />
     </template>
   </relations-page>
 </template>

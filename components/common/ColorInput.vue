@@ -6,13 +6,46 @@
     v-on="$listeners"
     @focus="$refs.proxy.show()"
     @click="$refs.proxy.show()"
-    >
+  >
     <template #append>
-      <q-icon name="colorize" class="cursor-pointer">
-        <q-popup-proxy ref="proxy" transition-show="scale" transition-hide="scale">
-          <q-color v-model="model" default-view="palette" format-model="hex" no-header />
+      <q-icon
+        name="colorize"
+        class="cursor-pointer"
+      >
+        <q-popup-proxy
+          ref="proxy"
+          transition-show="scale"
+          transition-hide="scale"
+        >
+          <q-color
+            v-model="model"
+            default-view="palette"
+            format-model="hex"
+            no-header
+          />
         </q-popup-proxy>
       </q-icon>
+    </template>
+
+    <template
+      v-for="(fn, key) in $slots"
+      :slot="key"
+    >
+      <slot
+        v-if="!usedSlots.includes(key)"
+        :name="key"
+      />
+    </template>
+    <template
+      v-for="(fn, key) in $scopedSlots"
+      :slot="key"
+      slot-scope="scope"
+    >
+      <slot
+        v-if="!usedSlots.includes(key)"
+        :name="key"
+        v-bind="scope"
+      />
     </template>
   </q-input>
 </template>
@@ -22,7 +55,12 @@ import FormElementMixin from '../mixins/FormElement'
 
 export default {
   name: 'ColorInputComponent',
-  mixins: [FormElementMixin]
+  mixins: [FormElementMixin],
+  data () {
+    return {
+      usedSlots: ['default', 'append']
+    }
+  }
 }
 </script>
 

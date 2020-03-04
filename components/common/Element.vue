@@ -1,10 +1,31 @@
 <template>
-  <component :is="tag" v-bind="$attrs" v-on="$listeners">
+  <component
+    :is="tag"
+    v-bind="$attrs"
+    v-on="$listeners"
+  >
     <slot />
-    <slot name="hint" slot="hint" />
-    <!-- <slot v-for="(name, nodes) in $slots" :name="name" :slot="name"> -->
-      <!-- {{ nodes }}
-    </slot> -->
+
+    <template
+      v-for="(fn, key) in $slots"
+      :slot="key"
+    >
+      <slot
+        v-if="!usedSlots.includes(key)"
+        :name="key"
+      />
+    </template>
+    <template
+      v-for="(fn, key) in $scopedSlots"
+      :slot="key"
+      slot-scope="scope"
+    >
+      <slot
+        v-if="!usedSlots.includes(key)"
+        :name="key"
+        v-bind="scope"
+      />
+    </template>
   </component>
 </template>
 
@@ -15,6 +36,11 @@ export default {
     tag: {
       type: String,
       required: true
+    }
+  },
+  data () {
+    return {
+      usedSlots: ['default']
     }
   }
 }

@@ -1,12 +1,36 @@
 <template>
-  <q-table ref="QTable" :grid="isMobile" :columns="allColumns" v-bind="$attrs" v-on="$listeners">
+  <q-table
+    ref="QTable"
+    :grid="isMobile"
+    :columns="allColumns"
+    v-bind="$attrs"
+    v-on="$listeners"
+  >
     <template #body-cell-serial="{ row }">
       <q-td>
-      {{ row.__index + 1 }}
+        {{ row.__index + 1 }}
       </q-td>
     </template>
-    <template v-for="(fn, slot) in $scopedSlots" :slot="slot" slot-scope="scope">
-      <slot :name="slot" v-bind="scope" />
+
+    <template
+      v-for="(fn, key) in $slots"
+      :slot="key"
+    >
+      <slot
+        v-if="!usedSlots.includes(key)"
+        :name="key"
+      />
+    </template>
+    <template
+      v-for="(fn, key) in $scopedSlots"
+      :slot="key"
+      slot-scope="scope"
+    >
+      <slot
+        v-if="!usedSlots.includes(key)"
+        :name="key"
+        v-bind="scope"
+      />
     </template>
   </q-table>
 </template>
@@ -22,6 +46,11 @@ export default {
     serialNumber: {
       type: [Boolean, String],
       default: false
+    }
+  },
+  data () {
+    return {
+      usedSlots: ['default', 'bodyCellSerial']
     }
   },
   computed: {

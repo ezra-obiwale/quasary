@@ -1,11 +1,34 @@
 <template>
-  <q-form ref="QForm" class="q-gutter-y-md" v-bind="$attrs" v-on="$listeners">
+  <q-form
+    ref="QForm"
+    class="q-gutter-y-md"
+    v-bind="$attrs"
+    v-on="$listeners"
+  >
     <slot />
     <div class="text-center">
-      <q-separator v-if="!isMobile" class="q-mb-md" />
-      <stickable-btn type="submit" mobile-icon="check" :loading="working" :label="btnLabel" :regular="regularBtn" :non-sticky="nonStickyBtn" />
+      <q-separator
+        v-if="!isMobile"
+        class="q-mb-md"
+      />
+      <stickable-btn
+        type="submit"
+        mobile-icon="check"
+        :loading="working"
+        :label="btnLabel"
+        :regular="regularBtn"
+        :non-sticky="nonStickyBtn"
+      />
       <slot name="after-button">
-        <q-btn v-if="!noCancelBtn && !isMobile" class="on-right" color="primary" label="Back" flat :to="cancelPath" replace />
+        <q-btn
+          v-if="!noCancelBtn && !isMobile"
+          class="on-right"
+          color="primary"
+          label="Back"
+          flat
+          :to="cancelPath"
+          replace
+        />
       </slot>
     </div>
   </q-form>
@@ -41,6 +64,11 @@ export default {
     working: {
       type: Boolean,
       default: false
+    }
+  },
+  data () {
+    return {
+      usedSlots: ['default', 'after-button']
     }
   },
   computed: {

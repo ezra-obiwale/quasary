@@ -6,11 +6,24 @@
     v-on="$listeners"
     @focus="$refs.proxy.show()"
     @click="$refs.proxy.show()"
-    >
+  >
     <template #append>
-      <q-icon ref="QIcon" name="access_time" class="cursor-pointer">
-        <q-popup-proxy ref="proxy" transition-show="scale" transition-hide="scale">
-          <q-time v-model="model" :mask="mask" @input="() => $refs.proxy.hide()" :now-btn="nowBtn" />
+      <q-icon
+        ref="QIcon"
+        name="access_time"
+        class="cursor-pointer"
+      >
+        <q-popup-proxy
+          ref="proxy"
+          transition-show="scale"
+          transition-hide="scale"
+        >
+          <q-time
+            v-model="model"
+            :mask="mask"
+            @input="() => $refs.proxy.hide()"
+            :now-btn="nowBtn"
+          />
         </q-popup-proxy>
       </q-icon>
     </template>
@@ -38,6 +51,11 @@ export default {
     value: {
       type: [Number, String, Date],
       default: () => new Date()
+    }
+  },
+  data () {
+    return {
+      usedSlots: ['default', 'append']
     }
   },
   computed: {
