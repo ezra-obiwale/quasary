@@ -308,7 +308,7 @@ export default {
     },
     getWidthClasses (fullWidth) {
       return fullWidth
-        ? 'col-xs-12 col-lg-10 offset-lg-1 col-xl-8 offset-xl-2'
+        ? 'col-xs-12'
         : 'col-xs-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3'
     }
   }
