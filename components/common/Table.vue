@@ -11,11 +11,6 @@
         {{ row.__index + 1 }}
       </q-td>
     </template>
-    <template v-for="(slot, key) in $slots" :slot="key">
-      <slot :name="key" />
-    </template>
-    <template v-for="(slot, key) in $scopedSlots" :slot="key" slot-scope="scope">
-      <slot :name="key" v-bind="scope" />
 
     <template
       v-for="(fn, key) in $slots"
