@@ -46,6 +46,13 @@
         </q-popup-proxy>
       </q-icon>
     </template>
+
+    <template
+      v-for="(fn, key) in $slots"
+      :slot="usedSlots.includes(key) ? undefined : key"
+    >
+      <slot
+        v-if="!usedSlots.includes(key)"
         :name="key"
       />
     </template>
@@ -65,7 +72,7 @@
 
 <script>
 import DateMixin from '../mixins/Date'
-
+export default {
   name: 'DateTimeInputComponent',
   mixins: [DateMixin],
   props: {
