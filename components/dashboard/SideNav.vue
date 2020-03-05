@@ -7,7 +7,7 @@
     :side="side"
     class="no-scroll print-hide"
   >
-    <q-toolbar v-if="$slots.toolbarTitle" class="text-white bg-primary">
+    <q-toolbar v-if="$slots['toolbar-title']" class="text-white bg-primary">
       <q-toolbar-title>
         <slot name="toolbar-title" />
       </q-toolbar-title>
@@ -82,10 +82,6 @@ import SideNavItem from './SideNavItem'
 export default {
   name: 'SideNavComponent',
   props: {
-    logo: {
-      type: String,
-      default: ''
-    },
     navs: {
       type: Array,
       default: () => []
@@ -117,9 +113,6 @@ export default {
         this.currentUser.permissions.includes('admin') &&
         !this.currentUser.branchId
       )
-    },
-    logoPath () {
-      return this.logo || '/statics/icons/icon-128x128.png'
     },
     model: {
       get () {
