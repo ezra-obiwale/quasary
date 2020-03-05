@@ -15,9 +15,7 @@
     v-on="$listeners"
   >
     <template #each-item-content="{ index, item, items }">
-      <q-item-section>
-        {{ getItemName(item) }}
-      </q-item-section>
+      <q-item-section v-html="getItemName(item)" />
       <q-item-section side>
         <q-btn
           icon="delete"
