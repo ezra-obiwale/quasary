@@ -15,7 +15,7 @@
       #page-desktop-buttons
     >
       <q-btn
-        :disabled="fileAdded && !canSave"
+        :disable="fileAdded && !canSave"
         :label="btnLabel"
         :icon="btnIcon"
         class="float-right"
@@ -28,7 +28,7 @@
       #page-mobile-buttons
     >
       <q-btn
-        :disabled="fileAdded && !canSave"
+        :disable="fileAdded && !canSave"
         fab
         :icon="btnIcon"
         class="float-right"

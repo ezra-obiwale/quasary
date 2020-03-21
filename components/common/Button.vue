@@ -2,7 +2,7 @@
   <q-btn
     ref="QBtn"
     :loading="loading"
-    :disabled="loading"
+    :disable="disable || loading"
     :color="color"
     :class="{ 'full-width' : !regular }"
     :size="actualSize"
@@ -50,6 +50,10 @@ export default {
     color: {
       type: String,
       default: 'primary'
+    },
+    disable: {
+      type: Boolean,
+      default: false
     },
     loading: {
       type: Boolean,

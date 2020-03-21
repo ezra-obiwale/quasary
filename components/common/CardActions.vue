@@ -12,7 +12,7 @@
         <q-btn
           class="on-left"
           :loading="deleting"
-          :disabled="deleting"
+          :disable="deleting"
           flat
           :label="deleteErrorMessage ? 'Retry?' : 'Yes'"
           color="negative"
