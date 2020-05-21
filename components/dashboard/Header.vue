@@ -21,7 +21,7 @@
         />
       </slot>
 
-      <q-toolbar-title>
+      <q-toolbar-title v-if="title || $slots['title']">
         <slot name="title">
           <template v-if="title">
             {{ title }}
