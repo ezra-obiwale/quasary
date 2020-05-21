@@ -105,15 +105,15 @@ export default {
     },
     previewClicked () {
       if (!this.noChanges) {
-        this.$refs.uploader.pickFiles()
+        this.$refs.QUploader.pickFiles()
       }
     },
     reset () {
       this.hasFile = false
-      this.$refs.uploader.reset()
+      this.$refs.QUploader.reset()
     },
     upload () {
-      this.$refs.uploader.upload()
+      this.$refs.QUploader.upload()
     },
     uploaded (data) {
       try {
