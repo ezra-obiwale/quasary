@@ -42,11 +42,26 @@
           />
         </q-card-actions>
       </slot>
-      <template v-for="(slot, key) in $slots" :slot="key">
-        <slot :name="key" />
+
+      <template
+        v-for="(fn, key) in $slots"
+        :slot="usedSlots.includes(key) ? undefined : key"
+      >
+        <slot
+          v-if="!usedSlots.includes(key)"
+          :name="key"
+        />
       </template>
-      <template v-for="(slot, key) in $scopedSlots" :slot="key" slot-scope="scope">
-        <slot :name="key" v-bind="scope" />
+      <template
+        v-for="(fn, key) in $scopedSlots"
+        :slot="usedSlots.includes(key) ? undefined : key"
+        slot-scope="scope"
+      >
+        <slot
+          v-if="!usedSlots.includes(key)"
+          :name="key"
+          v-bind="scope"
+        />
       </template>
     </q-card>
   </q-dialog>
