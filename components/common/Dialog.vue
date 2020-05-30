@@ -111,13 +111,13 @@ export default {
   },
   methods: {
     hide () {
-      this.$refs.dialog.hide()
+      this.$refs.QDialog.hide()
     },
     shake () {
-      this.$refs.dialog.shake()
+      this.$refs.QDialog.shake()
     },
     show () {
-      this.$refs.dialog.show()
+      this.$refs.QDialog.show()
     }
   }
 }

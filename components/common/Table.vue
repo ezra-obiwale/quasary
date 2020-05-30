@@ -71,7 +71,7 @@ export default {
   },
   methods: {
     load () {
-      return this.$refs.table.requestServerInteraction()
+      return this.$refs.QTable.requestServerInteraction()
     }
   }
 }
