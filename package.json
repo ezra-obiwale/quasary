@@ -8,7 +8,7 @@
   "license": "MIT",
   "private": false,
   "dependencies": {
-    "@ezraobiwale/http": "^1.2.0",
+    "@ezraobiwale/http": "1.2.0",
     "quasar": "^1.0.0",
     "xlsx": "^0.15.0"
   }
