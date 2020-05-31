@@ -2,6 +2,7 @@
   <form-element
     ref="FormElement"
     tag="q-select"
+    :clearable="!multiple && clearable"
     :emit-value="emitValue"
     :map-options="emitValue"
     :multiple="multiple"
@@ -41,6 +42,10 @@
 export default {
   name: 'SelectComponent',
   props: {
+    clearable: {
+      type: Boolean,
+      default: false
+    },
     emitValue: {
       type: Boolean,
       default: false
