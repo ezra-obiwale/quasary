@@ -1,6 +1,6 @@
 {
   "name": "@ezraobiwale/quasary",
-  "version": "2.2.7",
+  "version": "2.3.0",
   "description": "Components for Quasar Framework",
   "main": "index.js",
   "repository": "git@github.com:ezra-obiwale/quasary.git",
