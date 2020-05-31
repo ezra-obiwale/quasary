@@ -141,11 +141,13 @@
             />
           </slot>
           <div
-            class="text-h4"
+            class="text-h4 ellipsis"
             :class="{ 'text-center': centerTitle }"
           >
             {{ title }}
+
             <slot name="beside-title" />
+
             <app-btn
               v-if="!noSorting"
               color="primary"
@@ -247,6 +249,10 @@ export default {
       type: String,
       default: ''
     },
+    titleTemplate: {
+      type: Function,
+      default: () => title
+    },
     working: {
       type: Boolean,
       default: false
@@ -255,7 +261,7 @@ export default {
   meta () {
     return {
       title: this.title,
-      titleTemplate: title => `${title} - School`,
+      titleTemplate: this.titleTemplate,
       noscript: {
         default: 'This page requires javascript'
       }
