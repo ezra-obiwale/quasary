@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-"@ezraobiwale/http@1.2.0":
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/@ezraobiwale/http/-/http-1.2.0.tgz#2fef2f6476e1adfb8d6fb300b28b7abbf857c3f9"
-  integrity sha512-0mZc5ZKoVsUTkQF/2yAB6op099o42bGjqS8rVcIOuAvaYgEDvDbftv4E76GRAVnp5OPQloY+GXDMQDklzifupQ==
+"@ezraobiwale/http@^1.2.0":
+  version "1.4.1"
+  resolved "https://registry.yarnpkg.com/@ezraobiwale/http/-/http-1.4.1.tgz#94b01da18732bafbb59bd4c7acdedc71b373c84e"
+  integrity sha512-+hxSRffJQ7BgjksfFOrb25Y/4ugiHMqx4ji8dVcZgh9sMZKF2jzJ0u7U1oLE7xEDfetoSEdm1SQAqRzwUHKG1Q==
   dependencies:
     axios "^0.18.0"
 
