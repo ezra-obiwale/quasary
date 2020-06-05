@@ -1,50 +1,51 @@
 <template>
-  <q-input
+  <QInput
     ref="QInput"
     v-model="model"
     v-bind="attrs"
     v-on="$listeners"
   >
     <template #prepend>
-      <q-icon
+      <QIcon
         ref="QIconPrepend"
         name="event"
         class="cursor-pointer"
       >
-        <q-popup-proxy
+        <QPopupProxy
           ref="dateProxy"
           transition-show="scale"
           transition-hide="scale"
         >
-          <q-date
+          <QDate
             v-model="model"
             :mask="mask"
             today-btn
             :options="options"
             @input="() => $refs.dateProxy.hide()"
           />
-        </q-popup-proxy>
-      </q-icon>
+        </QPopupProxy>
+      </QIcon>
     </template>
+
     <template #append>
-      <q-icon
+      <QIcon
         ref="QIconAppend"
         name="access_time"
         class="cursor-pointer"
       >
-        <q-popup-proxy
+        <QPopupProxy
           ref="timeProxy"
           transition-show="scale"
           transition-hide="scale"
         >
-          <q-time
+          <QTime
             v-model="model"
             :mask="mask"
             :options="options"
             @input="() => $refs.timeProxy.hide()"
           />
-        </q-popup-proxy>
-      </q-icon>
+        </QPopupProxy>
+      </QIcon>
     </template>
 
     <template
@@ -56,6 +57,7 @@
         :name="key"
       />
     </template>
+
     <template
       v-for="(fn, key) in $scopedSlots"
       :slot="usedSlots.includes(key) ? undefined : key"
@@ -67,7 +69,7 @@
         v-bind="scope"
       />
     </template>
-  </q-input>
+  </QInput>
 </template>
 
 <script>

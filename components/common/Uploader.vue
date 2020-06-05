@@ -1,6 +1,6 @@
 <template>
   <div>
-    <q-img
+    <QImg
       ref="QImg"
       v-if="!canShowUploader"
       class="cursor-pointer"
@@ -16,8 +16,9 @@
       >
         {{ previewText }}
       </div>
-    </q-img>
-    <q-uploader
+    </QImg>
+
+    <QUploader
       ref="QUploader"
       v-show="canShowUploader"
       class="full-width"

@@ -1,17 +1,19 @@
 <template>
-  <q-form
+  <QForm
     ref="QForm"
     class="q-gutter-y-md"
     v-bind="$attrs"
     v-on="$listeners"
   >
     <slot />
+
     <div class="text-center">
-      <q-separator
+      <QSeparator
         v-if="!isMobile"
         class="q-mb-md"
       />
-      <stickable-btn
+
+      <StickableBtn
         type="submit"
         mobile-icon="check"
         :loading="working"
@@ -19,8 +21,9 @@
         :regular="regularBtn"
         :non-sticky="nonStickyBtn"
       />
+
       <slot name="after-button">
-        <q-btn
+        <QBtn
           v-if="!noCancelBtn && !isMobile"
           class="on-right"
           color="primary"
@@ -31,11 +34,15 @@
         />
       </slot>
     </div>
-  </q-form>
+  </QForm>
 </template>
+
 <script>
+import StickableBtn from './StickableBtn'
+
 export default {
   name: 'FormComponent',
+  components: { StickableBtn },
   props: {
     btnLabel: {
       type: String,

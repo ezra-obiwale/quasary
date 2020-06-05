@@ -1,5 +1,5 @@
 <template>
-  <q-btn
+  <QBtn
     ref="QBtn"
     :loading="loading"
     :disable="disable || loading"
@@ -10,15 +10,16 @@
     v-on="$listeners"
   >
     <template #loading>
-      <q-spinner-rings />
+      <QSpinnerRings />
     </template>
-    <tool-tip
+
+    <ToolTip
       v-if="tooltip"
       :left="tooltipLeft"
       :right="tooltipRight"
       :bottom="tooltipBottom"
       :top="tooltipTop"
-    >{{ tooltip }}</tool-tip>
+    >{{ tooltip }}</ToolTip>
 
     <template
       v-for="(fn, key) in $slots"
@@ -29,6 +30,7 @@
         :name="key"
       />
     </template>
+
     <template
       v-for="(fn, key) in $scopedSlots"
       :slot="usedSlots.includes(key) ? undefined : key"
@@ -40,7 +42,7 @@
         v-bind="scope"
       />
     </template>
-  </q-btn>
+  </QBtn>
 </template>
 
 <script>

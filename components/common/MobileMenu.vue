@@ -1,10 +1,10 @@
 <template>
-  <q-dialog
+  <QDialog
     ref="QDialog"
     auto-close
     v-model="model"
   >
-    <q-list
+    <QList
       ref="QList"
       bordered
       separator
@@ -12,8 +12,8 @@
       class="bg-white full-width q-py-none"
     >
       <slot />
-    </q-list>
-  </q-dialog>
+    </QList>
+  </QDialog>
 </template>
 
 <script>

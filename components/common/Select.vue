@@ -1,5 +1,5 @@
 <template>
-  <form-element
+  <FormElement
     ref="FormElement"
     tag="q-select"
     :clearable="!multiple && clearable"
@@ -24,6 +24,7 @@
         :name="key"
       />
     </template>
+
     <template
       v-for="(fn, key) in $scopedSlots"
       :slot="usedSlots.includes(key) ? undefined : key"
@@ -35,12 +36,15 @@
         v-bind="scope"
       />
     </template>
-  </form-element>
+  </FormElement>
 </template>
 
 <script>
+import FormElement from './FormElement'
+
 export default {
   name: 'SelectComponent',
+  components: { FormElement },
   props: {
     clearable: {
       type: Boolean,

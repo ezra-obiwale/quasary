@@ -15,6 +15,7 @@
         :name="key"
       />
     </template>
+
     <template
       v-for="(fn, key) in $scopedSlots"
       :slot="usedSlots.includes(key) ? undefined : key"

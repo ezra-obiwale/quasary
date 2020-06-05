@@ -1,11 +1,11 @@
 <template>
-  <q-inner-loading
+  <QInnerLoading
     ref="QInnerLoading"
     :color="color"
     :size="size"
     v-bind="$attrs"
   >
-    <q-spinner-rings
+    <QSpinnerRings
       :size="size"
       :color="color"
     />
@@ -19,6 +19,7 @@
         :name="key"
       />
     </template>
+
     <template
       v-for="(fn, key) in $scopedSlots"
       :slot="usedSlots.includes(key) ? undefined : key"
@@ -30,7 +31,7 @@
         v-bind="scope"
       />
     </template>
-  </q-inner-loading>
+  </QInnerLoading>
 </template>
 
 <script>

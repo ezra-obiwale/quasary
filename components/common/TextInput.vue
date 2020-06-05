@@ -1,5 +1,5 @@
 <template>
-  <q-input
+  <QInput
     ref="QInput"
     v-model="model"
     v-bind="attrs"
@@ -14,6 +14,7 @@
         :name="key"
       />
     </template>
+
     <template
       v-for="(fn, key) in $scopedSlots"
       :slot="usedSlots.includes(key) ? undefined : key"
@@ -25,7 +26,7 @@
         v-bind="scope"
       />
     </template>
-  </q-input>
+  </QInput>
 </template>
 
 <script>

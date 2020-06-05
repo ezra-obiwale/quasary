@@ -1,8 +1,12 @@
 <template>
-  <q-header elevated reveal class="bg-primary text-white print-hide">
-    <q-toolbar>
+  <QHeader
+    elevated
+    reveal
+    :class="`${color} ${bgColor} ${!showInPrint ? 'print-hide' : ''}`"
+  >
+    <QToolbar>
       <slot name="before-title">
-        <q-btn
+        <QBtn
           v-if="leftMenuBtn"
           dense
           flat
@@ -11,7 +15,7 @@
           @click="$emit('leftMenu')"
         />
 
-        <q-btn
+        <QBtn
           v-if="arrowBackBtn"
           dense
           flat
@@ -21,16 +25,16 @@
         />
       </slot>
 
-      <q-toolbar-title v-if="title || $slots['title']">
+      <QToolbarTitle v-if="title || $slots['title']">
         <slot name="title">
           <template v-if="title">
             {{ title }}
           </template>
         </slot>
-      </q-toolbar-title>
+      </QToolbarTitle>
 
       <slot name="after-title">
-        <q-btn
+        <QBtn
           v-if="fullscreenBtn"
           flat
           round
@@ -38,14 +42,12 @@
           :icon="$q.fullscreen.isActive ? 'fullscreen_exit' : 'fullscreen'"
           @click="$q.fullscreen.toggle()"
         >
-          <tool-tip>
-            {{
-              $q.fullscreen.isActive ? 'Exit fullscreen' : 'Enter fullscreen'
-            }}
-          </tool-tip>
-        </q-btn>
+          <ToolTip>
+            {{ $q.fullscreen.isActive ? 'Exit fullscreen' : 'Enter fullscreen' }}
+          </ToolTip>
+        </QBtn>
 
-        <q-btn
+        <QBtn
           v-if="rightMenuBtn"
           dense
           flat
@@ -54,17 +56,28 @@
           @click="$emit('rightMenu')"
         />
       </slot>
-    </q-toolbar>
-  </q-header>
+    </QToolbar>
+  </QHeader>
 </template>
 
 <script>
+import Tooltip from '../common/ToolTip'
+
 export default {
   name: 'HeaderComponent',
+  components: { Tooltip },
   props: {
     arrowBackBtn: {
       type: Boolean,
       default: false
+    },
+    color: {
+      type: String,
+      default: 'text-white'
+    },
+    bgColor: {
+      type: String,
+      default: 'bg-primary'
     },
     fullscreenBtn: {
       type: Boolean,
@@ -75,6 +88,10 @@ export default {
       default: false
     },
     rightMenuBtn: {
+      type: Boolean,
+      default: false
+    },
+    showInPrint: {
       type: Boolean,
       default: false
     },

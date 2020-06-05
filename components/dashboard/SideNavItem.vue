@@ -1,5 +1,5 @@
 <template>
-  <q-item
+  <QItem
     clickable
     tag="a"
     :to="path"
@@ -7,14 +7,15 @@
     :active-class="activeClass"
     @click="handler"
   >
-    <q-item-section v-if="!isChild && icon" avatar>
-      <q-icon :name="icon" />
-    </q-item-section>
-    <q-item-section>
-      <q-item-label>{{ label }}</q-item-label>
-      <q-item-label v-if="subLabel" caption>{{ subLabel }}</q-item-label>
-    </q-item-section>
-  </q-item>
+    <QItemSection v-if="!isChild && icon" avatar>
+      <QIcon :name="icon" />
+    </QItemSection>
+
+    <QItemSection>
+      <QItemLabel>{{ label }}</QItemLabel>
+      <QItemLabel v-if="subLabel" caption>{{ subLabel }}</QItemLabel>
+    </QItemSection>
+  </QItem>
 </template>
 
 <script>

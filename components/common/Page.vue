@@ -1,5 +1,5 @@
 <template>
-  <q-page
+  <QPage
     ref="QPage"
     :key="pageIndex"
     :padding="!noPadding"
@@ -8,43 +8,42 @@
     :style="styleObject"
   >
     <component
-      :is="isMobile && !noInfiniteScroll ? 'q-infinite-scroll' : 'div'"
+      :is="isMobile && !noInfiniteScroll ? 'QInfiniteScroll' : 'div'"
       @load="load"
     >
       <component
-        :is="isMobile && !noPullToRefresh ? 'q-pull-to-refresh' : 'div'"
+        :is="isMobile && !noPullToRefresh ? 'QPullToRefresh' : 'div'"
         @refresh="refresh"
       >
         <slot>
           <div class="row">
             <div :class="localCardClass">
+              <slot name="before-card" />
+
               <slot name="card">
-                <q-card
+                <QCard
                   :class="cardClass"
                   :style="cardStyle"
                 >
-                  <q-card-section>
+                  <QCardSection>
                     <slot name="card-content" />
-                  </q-card-section>
-                </q-card>
+                  </QCardSection>
+                </QCard>
               </slot>
-            </div>
-          </div>
-          <div class="row q-mt-md">
-            <div :class="localCardClass">
+
               <slot name="after-card" />
             </div>
           </div>
         </slot>
       </component>
 
-      <q-page-sticky
+      <QPageSticky
         v-if="isMobile"
         position="bottom-right"
         :offset="[18, 18]"
       >
         <slot name="page-mobile-buttons">
-          <q-fab
+          <QFab
             v-if="canImport && !noCreateBtn"
             v-model="fabIsOpen"
             color="primary"
@@ -52,26 +51,28 @@
             icon="keyboard_arrow_up"
             direction="up"
           >
-            <q-fab-action
+            <QFabAction
               round
               color="primary"
               icon="add"
               size="lg"
               :to="`${$route.path}/new`"
             >
-              <tool-tip>{{ createBtnText }}</tool-tip>
-            </q-fab-action>
-            <q-fab-action
+              <ToolTip>{{ createBtnText }}</ToolTip>
+            </QFabAction>
+
+            <QFabAction
               round
               color="secondary"
               icon="file_upload"
               size="lg"
               :to="`${$route.path}/import`"
             >
-              <tool-tip>{{ importBtnText }}</tool-tip>
-            </q-fab-action>
-          </q-fab>
-          <q-btn
+              <ToolTip>{{ importBtnText }}</ToolTip>
+            </QFabAction>
+          </QFab>
+
+          <QBtn
             v-else-if="canImport"
             fab
             color="secondary"
@@ -79,9 +80,10 @@
             size="lg"
             :to="`${$route.path}/import`"
           >
-            <tool-tip>{{ importBtnText }}</tool-tip>
-          </q-btn>
-          <q-btn
+            <ToolTip>{{ importBtnText }}</ToolTip>
+          </QBtn>
+
+          <QBtn
             v-else-if="!noCreateBtn"
             fab
             color="primary"
@@ -89,18 +91,19 @@
             size="lg"
             :to="`${$route.path}/new`"
           >
-            <tool-tip>{{ createBtnText }}</tool-tip>
-          </q-btn>
+            <ToolTip>{{ createBtnText }}</ToolTip>
+          </QBtn>
         </slot>
-      </q-page-sticky>
+      </QPageSticky>
 
-      <app-loading :showing="working" />
+      <Loading :showing="working" />
+
       <template #loading>
         <div
           v-if="canLoadMore"
           class="row justify-center q-my-md"
         >
-          <q-spinner-rings
+          <QSpinnerRings
             color="primary"
             size="60px"
           />
@@ -108,12 +111,12 @@
       </template>
     </component>
 
-    <q-page-sticky
+    <QPageSticky
       expand
       position="top"
       v-if="!hideTitle && !isMobile"
     >
-      <q-toolbar
+      <QToolbar
         class="q-py-lg q-px-md bg-background"
         :class="{ 'print-hide': hideTitleOnPrint }"
       >
@@ -122,7 +125,7 @@
           class="q-pl-none"
         >
           <slot name="page-desktop-buttons">
-            <q-btn
+            <QBtn
               v-if="canImport"
               :to="`${$route.path}/import`"
               icon="file_upload"
@@ -131,7 +134,8 @@
               class="float-right"
               :class="{ 'on-right': !noCreateBtn }"
             />
-            <q-btn
+
+            <QBtn
               v-if="!noCreateBtn"
               :to="`${$route.path}/new`"
               icon="add"
@@ -140,6 +144,7 @@
               class="float-right"
             />
           </slot>
+
           <div
             class="text-h4 ellipsis"
             :class="{ 'text-center': centerTitle }"
@@ -148,7 +153,7 @@
 
             <slot name="beside-title" />
 
-            <app-btn
+            <Button
               v-if="!noSorting"
               color="primary"
               icon="sort"
@@ -161,17 +166,20 @@
             />
           </div>
         </div>
-      </q-toolbar>
-    </q-page-sticky>
-  </q-page>
+      </QToolbar>
+    </QPageSticky>
+  </QPage>
 </template>
 
 <script>
 import { mapMutations, mapState } from 'vuex'
-import AppBtn from './Button'
+import Button from './Button'
+import Loading from './Loading'
+import ToolTip from './ToolTip'
 
 export default {
   name: 'PageComponent',
+  components: { Button, Loading, ToolTip },
   props: {
     canGoBack: {
       type: Boolean,
@@ -250,8 +258,7 @@ export default {
       default: ''
     },
     titleTemplate: {
-      type: Function,
-      default: () => title
+      type: Function
     },
     working: {
       type: Boolean,
@@ -259,9 +266,13 @@ export default {
     }
   },
   meta () {
+    const $vm = this
+
     return {
       title: this.title,
-      titleTemplate: this.titleTemplate,
+      titleTemplate () {
+        return $vm.titleTemplate ? $vm.titleTemplate(...arguments) : $vm.title
+      },
       noscript: {
         default: 'This page requires javascript'
       }
@@ -272,7 +283,7 @@ export default {
       fabIsOpen: false
     }
   },
-  components: { AppBtn },
+  components: { Button, AppLoading },
   computed: {
     ...mapState('quasary', { pageIndex: 'index' }),
     localCardClass () {

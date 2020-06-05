@@ -1,5 +1,5 @@
 <template>
-  <q-input
+  <QInput
     ref="QInput"
     v-model="model"
     v-bind="attrs"
@@ -8,32 +8,34 @@
     @click="$refs.proxy.show()"
   >
     <template #append>
-      <q-icon
+      <QIcon
         ref="QIcon"
         name="access_time"
         class="cursor-pointer"
       >
-        <q-popup-proxy
+        <QPopupProxy
           ref="proxy"
           transition-show="scale"
           transition-hide="scale"
         >
-          <q-time
+          <QTime
             v-model="model"
             :mask="mask"
             @input="() => $refs.proxy.hide()"
             :now-btn="nowBtn"
           />
-        </q-popup-proxy>
-      </q-icon>
+        </QPopupProxy>
+      </QIcon>
     </template>
+
     <template v-for="(slot, key) in $slots" :slot="key">
       <slot :name="key" />
     </template>
+
     <template v-for="(slot, key) in $scopedSlots" :slot="key" slot-scope="scope">
       <slot :name="key" v-bind="scope" />
     </template>
-  </q-input>
+  </QInput>
 </template>
 
 <script>

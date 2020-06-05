@@ -3,13 +3,15 @@
     class="text-center text-weight-light"
     :style="`margin-top: ${margins || topMargin}; margin-bottom: ${margins || bottomMargin}`"
   >
-    <q-icon
+    <QIcon
       :name="icon"
       color="grey"
       :size="size"
       class="q-mb-lg"
     />
+
     <br />
+
     <slot />
   </div>
 </template>

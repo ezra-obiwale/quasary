@@ -1,5 +1,5 @@
 <template>
-  <q-scroll-area
+  <QScrollArea
     ref="QScrollArea"
     :style="`height: ${height}`"
     :thumb-style="thumbStyle"
@@ -17,6 +17,7 @@
         :name="key"
       />
     </template>
+
     <template
       v-for="(fn, key) in $scopedSlots"
       :slot="usedSlots.includes(key) ? undefined : key"
@@ -28,7 +29,7 @@
         v-bind="scope"
       />
     </template>
-  </q-scroll-area>
+  </QScrollArea>
 </template>
 <script>
 import { colors } from 'quasar'

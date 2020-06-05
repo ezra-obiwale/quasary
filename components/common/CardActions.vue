@@ -1,5 +1,5 @@
 <template>
-  <q-card-actions
+  <QCardActions
     ref="QCardActions"
     :class="{'bg-primary-light': confirmDelete}"
   >
@@ -8,8 +8,9 @@
         class="on-left q-mt-sm"
         :class="{'text-negative': deleteErrorMessage}"
       >{{ deleteMessage }}</div>
+
       <div class="text-right">
-        <q-btn
+        <QBtn
           class="on-left"
           :loading="deleting"
           :disable="deleting"
@@ -18,7 +19,8 @@
           color="negative"
           @click="emitDelete"
         />
-        <q-btn
+
+        <QBtn
           v-if="!deleting"
           flat
           label="No"
@@ -27,9 +29,11 @@
         />
       </div>
     </template>
+
     <template v-else>
       <slot name="before" />
-      <q-btn
+
+      <QBtn
         ref="QBtnEdit"
         v-if="!noEdit"
         flat
@@ -38,7 +42,8 @@
         color="primary"
         @click="edit"
       />
-      <q-btn
+
+      <QBtn
         ref="QBtnDelete"
         v-if="!noDelete"
         flat
@@ -47,6 +52,7 @@
         color="negative"
         @click="confirmDelete = true"
       />
+
       <slot name="after" />
     </template>
 
@@ -59,6 +65,7 @@
         :name="key"
       />
     </template>
+
     <template
       v-for="(fn, key) in $scopedSlots"
       :slot="usedSlots.includes(key) ? undefined : key"
@@ -70,7 +77,7 @@
         v-bind="scope"
       />
     </template>
-  </q-card-actions>
+  </QCardActions>
 </template>
 
 <script>

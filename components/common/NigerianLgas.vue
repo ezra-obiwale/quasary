@@ -1,5 +1,5 @@
 <template>
-  <app-select
+  <Select
     ref="Select"
     :options="lgaOptions"
     :loading="loading"
@@ -17,6 +17,7 @@
         :name="key"
       />
     </template>
+
     <template
       v-for="(fn, key) in $scopedSlots"
       :slot="usedSlots.includes(key) ? undefined : key"
@@ -28,14 +29,16 @@
         v-bind="scope"
       />
     </template>
-  </app-select>
+  </Select>
 </template>
 
 <script>
+import Select from './Select'
 import { mapActions, mapState } from 'vuex'
 
 export default {
   name: 'LgasComponent',
+  components: { Select },
   props: {
     disabledOptions: {
       type: Array,

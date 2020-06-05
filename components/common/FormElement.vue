@@ -1,5 +1,5 @@
 <template>
-  <app-element
+  <Element
     ref="Element"
     v-model="model"
     v-bind="attrs"
@@ -16,6 +16,7 @@
         :name="key"
       />
     </template>
+
     <template
       v-for="(fn, key) in $scopedSlots"
       :slot="usedSlots.includes(key) ? undefined : key"
@@ -27,15 +28,17 @@
         v-bind="scope"
       />
     </template>
-  </app-element>
+  </Element>
 </template>
 
 <script>
 import attrs from '../mixins/FormElement'
+import Element from './Element'
 
 export default {
   name: 'FormElementComponent',
   mixins: [attrs],
+  components: { Element },
   data () {
     return {
       usedSlots: ['default']

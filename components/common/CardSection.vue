@@ -1,5 +1,5 @@
 <template>
-  <q-card-section
+  <QCardSection
     ref="QCardSection"
     class="row"
   >
@@ -15,6 +15,7 @@
           :name="key"
         />
       </template>
+
       <template
         v-for="(fn, key) in $scopedSlots"
         :slot="usedSlots.includes(key) ? undefined : key"
@@ -27,33 +28,34 @@
         />
       </template>
     </div>
+
     <div
       v-if="$slots['right-side'] || $slots['menu-list'] || $slots['menu-list-items']"
       class="col-auto"
     >
       <slot name="right-side">
-        <q-btn
+        <QBtn
           ref="QBtn"
           color="primary"
           round
           flat
           icon="more_vert"
         >
-          <q-menu
+          <QMenu
             anchor="top left"
             self="top right"
             auto-close
           >
             <slot name="menu-list">
-              <q-list>
+              <QList>
                 <slot name="menu-list-items" />
-              </q-list>
+              </QList>
             </slot>
-          </q-menu>
-        </q-btn>
+          </QMenu>
+        </QBtn>
       </slot>
     </div>
-  </q-card-section>
+  </QCardSection>
 </template>
 
 <script>

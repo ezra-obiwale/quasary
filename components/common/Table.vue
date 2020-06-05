@@ -1,5 +1,5 @@
 <template>
-  <q-table
+  <QTable
     ref="QTable"
     :grid="isMobile"
     :columns="allColumns"
@@ -7,9 +7,9 @@
     v-on="$listeners"
   >
     <template #body-cell-serial="{ row }">
-      <q-td>
+      <QTd>
         {{ row.__index + 1 }}
-      </q-td>
+      </QTd>
     </template>
 
     <template
@@ -21,6 +21,7 @@
         :name="key"
       />
     </template>
+
     <template
       v-for="(fn, key) in $scopedSlots"
       :slot="usedSlots.includes(key) ? undefined : key"
@@ -32,7 +33,7 @@
         v-bind="scope"
       />
     </template>
-  </q-table>
+  </QTable>
 </template>
 
 <script>

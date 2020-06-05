@@ -5,7 +5,7 @@
         :key="`${current.id}`"
         :class="`col-xs-${xs} col-sm-${sm} col-md-${md} col-lg-${lg} col-xl-${xl}`"
       >
-        <q-card v-bind="$attrs">
+        <QCard v-bind="$attrs">
           <slot
             :current="current"
             :index="index"
@@ -20,6 +20,7 @@
               :name="key"
             />
           </template>
+
           <template
             v-for="(fn, key) in $scopedSlots"
             :slot="usedSlots.includes(key) ? undefined : key"
@@ -31,7 +32,7 @@
               v-bind="scope"
             />
           </template>
-        </q-card>
+        </QCard>
       </div>
     </template>
   </div>

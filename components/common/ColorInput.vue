@@ -1,5 +1,5 @@
 <template>
-  <q-input
+  <QInput
     ref="QInput"
     v-model="model"
     v-bind="attrs"
@@ -8,23 +8,23 @@
     @click="$refs.proxy.show()"
   >
     <template #append>
-      <q-icon
+      <QIcon
         name="colorize"
         class="cursor-pointer"
       >
-        <q-popup-proxy
+        <QPopupProxy
           ref="proxy"
           transition-show="scale"
           transition-hide="scale"
         >
-          <q-color
+          <QColor
             v-model="model"
             default-view="palette"
             format-model="hex"
             no-header
           />
-        </q-popup-proxy>
-      </q-icon>
+        </QPopupProxy>
+      </QIcon>
     </template>
 
     <template
@@ -36,6 +36,7 @@
         :name="key"
       />
     </template>
+
     <template
       v-for="(fn, key) in $scopedSlots"
       :slot="usedSlots.includes(key) ? undefined : key"
@@ -47,7 +48,7 @@
         v-bind="scope"
       />
     </template>
-  </q-input>
+  </QInput>
 </template>
 
 <script>

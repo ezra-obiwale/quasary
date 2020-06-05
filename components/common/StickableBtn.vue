@@ -1,5 +1,5 @@
 <template>
-  <app-btn
+  <Button
     ref="Button"
     v-if="$q.screen.gt.sm || nonSticky"
     :label="label"
@@ -7,14 +7,15 @@
     v-bind="$attrs"
     v-on="$listeners"
   />
-  <q-page-sticky
+
+  <QPageSticky
     ref="QPageSticky"
     v-else
     style="z-index: 9"
     position="bottom-right"
     :offset="[18, 18]"
   >
-    <app-btn
+    <Button
       ref="Button"
       fab
       :icon="mobileIcon || icon"
@@ -22,12 +23,15 @@
       v-bind="$attrs"
       v-on="$listeners"
     />
-  </q-page-sticky>
+  </QPageSticky>
 </template>
 
 <script>
+import Button from './Button'
+
 export default {
   name: 'StickableBtnComponent',
+  components: { Button },
   props: {
     icon: {
       type: String,

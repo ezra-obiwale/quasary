@@ -1,4 +1,3 @@
-import AssignItemsPage from './AssignItemsPage'
 import Button from './Button'
 import CardActions from './CardActions'
 import Cards from './Cards'
@@ -11,7 +10,6 @@ import Element from './Element'
 import EmptyMessage from './EmptyMessage'
 import Form from './Form'
 import FormElement from './FormElement'
-import ImportPage from './ImportPage'
 import Loading from './Loading'
 import MobileMenu from './MobileMenu'
 import NigerianLgas from './NigerianLgas'
@@ -27,7 +25,6 @@ import ToolTip from './ToolTip'
 import Uploader from './Uploader'
 
 export default {
-  AssignItemsPage,
   Button,
   CardActions,
   Cards,
@@ -40,7 +37,6 @@ export default {
   EmptyMessage,
   Form,
   FormElement,
-  ImportPage,
   Loading,
   MobileMenu,
   NigerianLgas,

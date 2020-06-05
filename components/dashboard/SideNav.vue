@@ -1,5 +1,5 @@
 <template>
-  <q-drawer
+  <QDrawer
     v-if="currentUser && sideBar"
     v-model="model"
     elevated
@@ -7,26 +7,35 @@
     :side="side"
     class="no-scroll print-hide"
   >
-    <q-toolbar v-if="$slots['toolbar-title']" class="text-white bg-primary">
-      <q-toolbar-title>
+    <QToolbar
+      v-if="$slots['toolbar-title']"
+      class="text-white bg-primary"
+    >
+      <QToolbarTitle>
         <slot name="toolbar-title" />
-      </q-toolbar-title>
-    </q-toolbar>
-    <scroll-area>
+      </QToolbarTitle>
+    </QToolbar>
+
+    <ScrollArea>
       <slot name="content">
         <slot name="before-list" />
-        <q-list separator bordered>
+
+        <QList
+          separator
+          bordered
+        >
           <slot name="list-items">
             <template v-for="(nav, index) in navs">
               <template v-if="canShow(nav, index) && showing[index]">
-                <side-nav-item
+                <SideNavItem
                   v-if="!nav.children"
                   :key="`${nav.path}_${nav.label}`"
                   v-bind="nav"
                 />
+
                 <template v-else-if="ungroup(nav, index) && ungrouped[index]">
                   <template v-for="(subnav, subIndex) in nav.children">
-                    <side-nav-item
+                    <SideNavItem
                       v-if="
                         canShow(subnav, `${index}-${subIndex}`) &&
                           showing[`${index}-${subIndex}`]
@@ -37,7 +46,8 @@
                     />
                   </template>
                 </template>
-                <q-expansion-item
+
+                <QExpansionItem
                   v-else
                   :key="nav.path || `ex-${index}`"
                   group="sidenav"
@@ -50,9 +60,9 @@
                   }"
                   expand-separator
                 >
-                  <q-list>
+                  <QList>
                     <template v-for="(subnav, subIndex) in nav.children">
-                      <side-nav-item
+                      <SideNavItem
                         v-if="
                           canShow(subnav, `${index}-${subIndex}`) &&
                             showing[`${index}-${subIndex}`]
@@ -63,24 +73,27 @@
                         is-child
                       />
                     </template>
-                  </q-list>
-                </q-expansion-item>
+                  </QList>
+                </QExpansionItem>
               </template>
             </template>
           </slot>
-        </q-list>
+        </QList>
+
         <slot name="after-list" />
       </slot>
-    </scroll-area>
-  </q-drawer>
+    </ScrollArea>
+  </QDrawer>
 </template>
 
 <script>
 import { mapState } from 'vuex'
+import ScrollArea from '../common/ScrollArea'
 import SideNavItem from './SideNavItem'
 
 export default {
   name: 'SideNavComponent',
+  components: { ScrollArea, SideNavItem },
   props: {
     navs: {
       type: Array,
@@ -94,9 +107,6 @@ export default {
       type: Boolean,
       default: false
     }
-  },
-  components: {
-    SideNavItem
   },
   data () {
     return {
@@ -129,8 +139,8 @@ export default {
         this.showing,
         index,
         nav.showIf === undefined ||
-          (typeof nav.showIf === 'boolean' && nav.showIf) ||
-          (typeof nav.showIf === 'function' && (await nav.showIf()))
+        (typeof nav.showIf === 'boolean' && nav.showIf) ||
+        (typeof nav.showIf === 'function' && (await nav.showIf()))
       )
     },
     expansionIsActive (nav) {
@@ -144,7 +154,7 @@ export default {
         this.ungrouped,
         index,
         (typeof nav.ungroup === 'boolean' && nav.ungroup) ||
-          (typeof nav.ungroup === 'function' && (await nav.ungroup()))
+        (typeof nav.ungroup === 'function' && (await nav.ungroup()))
       )
     }
   }

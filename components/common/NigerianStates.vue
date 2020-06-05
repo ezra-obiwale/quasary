@@ -1,5 +1,5 @@
 <template>
-  <app-select
+  <Select
     ref="Select"
     :options="stateOptions"
     :loading="loading"
@@ -18,6 +18,7 @@
         :name="key"
       />
     </template>
+
     <template
       v-for="(fn, key) in $scopedSlots"
       :slot="usedSlots.includes(key) ? undefined : key"
@@ -29,13 +30,16 @@
         v-bind="scope"
       />
     </template>
-  </app-select>
+  </Select>
 </template>
 
 <script>
+import Select from './Select'
 import { mapActions, mapMutations, mapState } from 'vuex'
+
 export default {
   name: 'NigerianStatesComponent',
+  components: { Select },
   props: {
     disabledOptions: {
       type: Array,

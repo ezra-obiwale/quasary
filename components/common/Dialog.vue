@@ -1,46 +1,46 @@
 <template>
-  <q-dialog
+  <QDialog
     ref="QDialog"
     v-bind="$attrs"
     v-on="$listeners"
   >
-    <q-card
+    <QCard
       ref="QCard"
       :style="`width: ${width}`"
     >
       <template v-if="title">
-        <q-card-section>
+        <QCardSection>
           <div class="text-h6">{{ title }}</div>
-        </q-card-section>
+        </QCardSection>
 
-        <q-separator />
+        <QSeparator />
       </template>
 
-      <q-card-section
+      <QCardSection
         :style="`max-height: ${maxHeight}`"
         class="scroll"
       >
         <slot />
-      </q-card-section>
+      </QCardSection>
 
       <slot
         v-if="!noActions"
         name="actions"
       >
-        <q-separator />
+        <QSeparator />
 
-        <q-card-actions align="right">
-          <q-btn
+        <QCardActions align="right">
+          <QBtn
             v-if="!noOkBtn"
             v-bind="okBtn"
             @click="$emit('ok')"
           />
-          <q-btn
+          <QBtn
             v-if="!noCloseBtn"
             v-bind="closeBtn"
             @click="$emit('close')"
           />
-        </q-card-actions>
+        </QCardActions>
       </slot>
 
       <template
@@ -52,6 +52,7 @@
           :name="key"
         />
       </template>
+
       <template
         v-for="(fn, key) in $scopedSlots"
         :slot="usedSlots.includes(key) ? undefined : key"
@@ -63,8 +64,8 @@
           v-bind="scope"
         />
       </template>
-    </q-card>
-  </q-dialog>
+    </QCard>
+  </QDialog>
 </template>
 
 <script>
