@@ -283,7 +283,6 @@ export default {
       fabIsOpen: false
     }
   },
-  components: { Button, AppLoading },
   computed: {
     ...mapState('quasary', { pageIndex: 'index' }),
     localCardClass () {

@@ -15,7 +15,6 @@
 
       <StickableBtn
         type="submit"
-        mobile-icon="check"
         :loading="working"
         :label="btnLabel"
         :regular="regularBtn"
@@ -26,7 +25,7 @@
         <QBtn
           v-if="!noCancelBtn && !isMobile"
           class="on-right"
-          color="primary"
+          :color="btnColor"
           label="Back"
           flat
           :to="cancelPath"
@@ -44,6 +43,10 @@ export default {
   name: 'FormComponent',
   components: { StickableBtn },
   props: {
+    btnColor: {
+      type: String,
+      default: 'primary'
+    },
     btnLabel: {
       type: String,
       default: 'Save'
