@@ -19,13 +19,13 @@
         :label="btnLabel"
         :regular="regularBtn"
         :non-sticky="nonStickyBtn"
+        size="lg"
       />
 
       <slot name="after-button">
         <QBtn
           v-if="!noCancelBtn && !isMobile"
           class="on-right"
-          :color="btnColor"
           label="Back"
           flat
           :to="cancelPath"
@@ -43,10 +43,6 @@ export default {
   name: 'FormComponent',
   components: { StickableBtn },
   props: {
-    btnColor: {
-      type: String,
-      default: 'primary'
-    },
     btnLabel: {
       type: String,
       default: 'Save'
