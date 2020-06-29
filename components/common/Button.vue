@@ -46,8 +46,11 @@
 </template>
 
 <script>
+import ToolTip from './ToolTip'
+
 export default {
   name: 'ButtonComponent',
+  components: { ToolTip },
   props: {
     color: {
       type: String,
