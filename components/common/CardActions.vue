@@ -86,16 +86,14 @@ export default {
   inheritAttrs: false,
   props: {
     dataId: {
-      type: [String, Number],
-      default: ''
+      type: [String, Number]
     },
     deleteConfirmationMessage: {
       type: String,
       default: 'Really delete?'
     },
     deleteErrorMessage: {
-      type: String,
-      default: ''
+      type: String
     },
     deleting: {
       type: Boolean,

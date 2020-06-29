@@ -64,8 +64,7 @@ export default {
       default: false
     },
     returnPath: {
-      type: String,
-      default: ''
+      type: String
     },
     working: {
       type: Boolean,

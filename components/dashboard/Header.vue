@@ -96,8 +96,7 @@ export default {
       default: false
     },
     title: {
-      type: String,
-      default: ''
+      type: String
     }
   }
 }

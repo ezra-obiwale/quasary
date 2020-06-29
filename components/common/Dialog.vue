@@ -97,8 +97,7 @@ export default {
       default: () => ({ flat: true, label: 'OK', color: 'primary' })
     },
     title: {
-      type: String,
-      default: ''
+      type: String
     },
     width: {
       type: String,

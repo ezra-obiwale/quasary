@@ -31,8 +31,7 @@ export default {
       default: () => () => {}
     },
     icon: {
-      type: String,
-      default: ''
+      type: String
     },
     isChild: {
       type: Boolean,
@@ -50,7 +49,6 @@ export default {
     },
     subLabel: {
       type: String,
-      default: ''
     }
   },
   computed: {

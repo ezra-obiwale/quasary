@@ -21,16 +21,14 @@ export default {
   name: 'EmptyMessageComponent',
   props: {
     bottomMargin: {
-      type: String,
-      default: ''
+      type: String
     },
     icon: {
       type: String,
       default: 'layers_clear'
     },
     margins: {
-      type: String,
-      default: ''
+      type: String
     },
     size: {
       type: String,

@@ -34,16 +34,14 @@ export default {
   components: { Button },
   props: {
     icon: {
-      type: String,
-      default: ''
+      type: String
     },
     label: {
       type: String,
       default: 'Click'
     },
     mobileIcon: {
-      type: String,
-      default: ''
+      type: String
     },
     nonSticky: {
       type: Boolean,

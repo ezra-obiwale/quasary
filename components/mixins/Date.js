@@ -5,16 +5,14 @@ export default {
   mixins: [FormElementMixin],
   props: {
     min: {
-      type: [String, Date],
-      default: ''
+      type: [String, Date]
     },
     mask: {
       type: String,
       default: 'YYYY-MM-DD'
     },
     max: {
-      type: [String, Date],
-      default: ''
+      type: [String, Date]
     },
     value: {
       type: [Number, String, Date],

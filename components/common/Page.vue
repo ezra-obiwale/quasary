@@ -194,12 +194,10 @@ export default {
       default: false
     },
     cardClass: {
-      type: String,
-      default: ''
+      type: String
     },
     cardStyle: {
-      type: String,
-      default: ''
+      type: String
     },
     centerTitle: {
       type: Boolean,
@@ -222,8 +220,7 @@ export default {
       default: false
     },
     icon: {
-      type: String,
-      default: ''
+      type: String
     },
     importBtnText: {
       type: String,
@@ -254,8 +251,7 @@ export default {
       default: false
     },
     title: {
-      type: String,
-      default: ''
+      type: String
     },
     titleTemplate: {
       type: Function

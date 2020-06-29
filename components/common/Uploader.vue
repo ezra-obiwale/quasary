@@ -63,12 +63,10 @@ export default {
       default: false
     },
     preview: {
-      type: String,
-      default: ''
+      type: String
     },
     previewText: {
-      type: String,
-      default: ''
+      type: String
     },
     url: {
       type: String,

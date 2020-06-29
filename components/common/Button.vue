@@ -70,8 +70,7 @@ export default {
       default: 'auto'
     },
     tooltip: {
-      type: String,
-      default: ''
+      type: String
     },
     tooltipBottom: {
       type: Boolean,
