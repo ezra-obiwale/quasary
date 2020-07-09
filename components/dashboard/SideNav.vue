@@ -6,6 +6,8 @@
     show-if-above
     :side="side"
     class="no-scroll print-hide"
+    v-bind="$attrs"
+    v-on="$listeners"
   >
     <QToolbar
       v-if="$slots['toolbar-title']"

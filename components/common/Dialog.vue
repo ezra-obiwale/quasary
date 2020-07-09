@@ -6,7 +6,7 @@
   >
     <QCard
       ref="QCard"
-      :style="`width: ${width}`"
+      :style="cardStyle"
     >
       <template v-if="title">
         <QCardSection>
@@ -72,6 +72,9 @@
 export default {
   name: 'DialogComponent',
   props: {
+    cardStyle: {
+      type: [String, Object]
+    },
     closeBtn: {
       type: Object,
       default: () => ({ flat: true, label: 'Close', color: 'secondary', vClosePopup: true })
@@ -98,10 +101,6 @@ export default {
     },
     title: {
       type: String
-    },
-    width: {
-      type: String,
-      default: 'auto'
     }
   },
   data () {
