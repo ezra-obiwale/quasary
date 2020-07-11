@@ -5,6 +5,8 @@
     :thumb-style="thumbStyle"
     :content-style="contentStyle"
     :content-active-style="contentActiveStyle"
+    v-bind="$attrs"
+    v-on="$listeners"
   >
     <slot />
 
@@ -50,18 +52,6 @@ export default {
     }
   },
   computed: {
-    contentStyle () {
-      return {
-        backgroundColor: 'rgba(0,0,0,0.02)',
-        color: '#555'
-      }
-    },
-    contentActiveStyle () {
-      return {
-        backgroundColor: '#eee',
-        color: 'black'
-      }
-    },
     thumbStyle () {
       return {
         right: '2px',

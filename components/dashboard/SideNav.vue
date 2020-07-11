@@ -2,89 +2,90 @@
   <QDrawer
     v-if="currentUser && sideBar"
     v-model="model"
-    elevated
-    show-if-above
     :side="side"
     class="no-scroll print-hide"
     v-bind="$attrs"
     v-on="$listeners"
+    elevated
   >
-    <QToolbar
-      v-if="$slots['toolbar-title']"
-      class="text-white bg-primary"
-    >
-      <QToolbarTitle>
-        <slot name="toolbar-title" />
-      </QToolbarTitle>
-    </QToolbar>
+    <slot>
+      <QToolbar
+        v-if="$slots['toolbar-title']"
+        class="text-white bg-primary"
+      >
+        <QToolbarTitle>
+          <slot name="toolbar-title" />
+        </QToolbarTitle>
+      </QToolbar>
 
-    <ScrollArea>
-      <slot name="content">
-        <slot name="before-list" />
+      <ScrollArea>
+        <slot name="content">
+          <slot name="before-list" />
 
-        <QList
-          separator
-          bordered
-        >
-          <slot name="list-items">
-            <template v-for="(nav, index) in navs">
-              <template v-if="canShow(nav, index) && showing[index]">
-                <SideNavItem
-                  v-if="!nav.children"
-                  :key="`${nav.path}_${nav.label}`"
-                  v-bind="nav"
-                />
+          <QList
+            separator
+            bordered
+          >
+            <slot name="list-items">
+              <template v-for="(nav, index) in navs">
+                <template v-if="canShow(nav, index) && showing[index]">
+                  <SideNavItem
+                    v-if="!nav.children"
+                    :key="`${nav.path}_${nav.label}`"
+                    v-bind="nav"
+                  />
 
-                <template v-else-if="ungroup(nav, index) && ungrouped[index]">
-                  <template v-for="(subnav, subIndex) in nav.children">
-                    <SideNavItem
-                      v-if="
-                        canShow(subnav, `${index}-${subIndex}`) &&
-                          showing[`${index}-${subIndex}`]
-                      "
-                      :key="subnav.path"
-                      :path="nav.path + subnav.path"
-                      v-bind="subnav"
-                    />
-                  </template>
-                </template>
-
-                <QExpansionItem
-                  v-else
-                  :key="nav.path || `ex-${index}`"
-                  group="sidenav"
-                  :content-inset-level="1"
-                  :icon="nav.icon"
-                  :label="nav.label"
-                  :default-opened="expansionIsActive(nav)"
-                  :header-class="{
-                    'text-primary': $route.path.startsWith(nav.path)
-                  }"
-                  expand-separator
-                >
-                  <QList>
+                  <template v-else-if="ungroup(nav, index) && ungrouped[index]">
                     <template v-for="(subnav, subIndex) in nav.children">
                       <SideNavItem
                         v-if="
-                          canShow(subnav, `${index}-${subIndex}`) &&
-                            showing[`${index}-${subIndex}`]
-                        "
+                        canShow(subnav, `${index}-${subIndex}`) &&
+                          showing[`${index}-${subIndex}`]
+                      "
                         :key="subnav.path"
                         :path="nav.path + subnav.path"
                         v-bind="subnav"
-                        is-child
                       />
                     </template>
-                  </QList>
-                </QExpansionItem>
-              </template>
-            </template>
-          </slot>
-        </QList>
+                  </template>
 
-        <slot name="after-list" />
-      </slot>
-    </ScrollArea>
+                  <QExpansionItem
+                    v-else
+                    :key="nav.path || `ex-${index}`"
+                    group="sidenav"
+                    :content-inset-level="1"
+                    :icon="nav.icon"
+                    :label="nav.label"
+                    :default-opened="expansionIsActive(nav)"
+                    :header-class="{
+                    'text-primary': $route.path.startsWith(nav.path)
+                  }"
+                    expand-separator
+                  >
+                    <QList>
+                      <template v-for="(subnav, subIndex) in nav.children">
+                        <SideNavItem
+                          v-if="
+                          canShow(subnav, `${index}-${subIndex}`) &&
+                            showing[`${index}-${subIndex}`]
+                        "
+                          :key="subnav.path"
+                          :path="nav.path + subnav.path"
+                          v-bind="subnav"
+                          is-child
+                        />
+                      </template>
+                    </QList>
+                  </QExpansionItem>
+                </template>
+              </template>
+            </slot>
+          </QList>
+
+          <slot name="after-list" />
+        </slot>
+      </ScrollArea>
+    </slot>
   </QDrawer>
 </template>
 
@@ -156,7 +157,7 @@ export default {
         this.ungrouped,
         index,
         (typeof nav.ungroup === 'boolean' && nav.ungroup) ||
-        (typeof nav.ungroup === 'function' && (await nav.ungroup()))
+        (typeof nav.ungroup === 'function'  && (await nav.ungroup()))
       )
     }
   }
