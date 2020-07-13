@@ -3,8 +3,6 @@
     ref="QScrollArea"
     :style="`height: ${height}`"
     :thumb-style="thumbStyle"
-    :content-style="contentStyle"
-    :content-active-style="contentActiveStyle"
     v-bind="$attrs"
     v-on="$listeners"
   >
