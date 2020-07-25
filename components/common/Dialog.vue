@@ -8,15 +8,18 @@
       ref="QCard"
       :style="cardStyle"
     >
-      <template v-if="title">
+      <template v-if="title || $slots.title || $scopedSlots.title">
         <QCardSection>
-          <div class="text-h6">{{ title }}</div>
+          <slot name="title">
+            <div class="text-h6">{{ title }}</div>
+          </slot>
         </QCardSection>
 
-        <QSeparator />
+        <QSeparator v-if="$slots.default" />
       </template>
 
       <QCardSection
+        v-if="$slots.default"
         :style="`max-height: ${maxHeight}`"
         class="scroll"
       >
@@ -115,7 +118,7 @@ export default {
     shake () {
       this.$refs.QDialog.shake()
     },
-    show () {
+    show   ( ) {
       this.$refs.QDialog.show()
     }
   }

@@ -21,7 +21,7 @@
           flat
           round
           icon="arrow_back"
-          @click="goBack"
+          @click="$emit('goBack')"
         />
       </slot>
 
