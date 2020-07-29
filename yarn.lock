@@ -3,9 +3,9 @@
 
 
 "@ezraobiwale/http@^1.2.0":
-  version "1.4.1"
-  resolved "https://registry.yarnpkg.com/@ezraobiwale/http/-/http-1.4.1.tgz#94b01da18732bafbb59bd4c7acdedc71b373c84e"
-  integrity sha512-+hxSRffJQ7BgjksfFOrb25Y/4ugiHMqx4ji8dVcZgh9sMZKF2jzJ0u7U1oLE7xEDfetoSEdm1SQAqRzwUHKG1Q==
+  version "1.4.2"
+  resolved "https://registry.yarnpkg.com/@ezraobiwale/http/-/http-1.4.2.tgz#f5198ba6027a0ec9598381d0b356f22dfc5bdefa"
+  integrity sha512-1XGpkqkrjXU9OSpZ8hBkrvnWk1N3qgnKICO2/nrXZbc6OfpLWY2X/fv1RvOUIJYADZveGHH+ldOwTd+b3rqu8Q==
   dependencies:
     axios "^0.18.0"
 
