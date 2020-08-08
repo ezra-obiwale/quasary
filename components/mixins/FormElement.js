@@ -1,8 +1,6 @@
 export default {
   props: {
-    value: {
-      type: [Number, String, Object, Array, Date]
-    }
+    value: {}
   },
   computed: {
     attrs () {

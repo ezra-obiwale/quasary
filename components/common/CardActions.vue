@@ -5,7 +5,7 @@
   >
     <template v-if="confirmDelete">
       <div
-        class="on-left q-mt-sm"
+        class="on-left"
         :class="{'text-negative': deleteErrorMessage}"
       >{{ deleteMessage }}</div>
 
