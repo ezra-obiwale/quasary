@@ -6,9 +6,9 @@
     v-bind="$attrs"
     v-on="$listeners"
   >
-    <template #body-cell-serial="{ row }">
+    <template #body-cell-serial="{ rowIndex }">
       <QTd>
-        {{ row.__index + 1 }}
+        {{ rowIndex + 1 }}
       </QTd>
     </template>
 
