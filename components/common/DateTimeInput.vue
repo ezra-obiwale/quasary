@@ -18,6 +18,8 @@
         >
           <QDate
             v-model="model"
+            :color="color"
+            :text-color="textColor"
             :mask="mask"
             today-btn
             :options="options"
@@ -40,6 +42,8 @@
         >
           <QTime
             v-model="model"
+            :color="color"
+            :text-color="textColor"
             :mask="mask"
             :options="options"
             @input="() => $refs.timeProxy.hide()"

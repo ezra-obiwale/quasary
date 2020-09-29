@@ -4,6 +4,9 @@ import { date } from 'quasar'
 export default {
   mixins: [FormElementMixin],
   props: {
+    color: {
+      type: String
+    },
     min: {
       type: [String, Date]
     },
@@ -13,6 +16,9 @@ export default {
     },
     max: {
       type: [String, Date]
+    },
+    textColor: {
+      type: String
     },
     value: {
       type: [Number, String, Date],

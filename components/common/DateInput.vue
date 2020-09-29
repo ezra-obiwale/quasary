@@ -20,6 +20,8 @@
         >
           <QDate
             v-model="model"
+            :color="color"
+            :text-color="textColor"
             :mask="mask"
             :options="options"
             today-btn

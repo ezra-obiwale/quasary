@@ -20,6 +20,8 @@
         >
           <QTime
             v-model="model"
+            :color="color"
+            :text-color="textColor"
             :mask="mask"
             @input="() => $refs.proxy.hide()"
             :now-btn="nowBtn"
@@ -28,12 +30,22 @@
       </QIcon>
     </template>
 
-    <template v-for="(slot, key) in $slots" :slot="key">
+    <template
+      v-for="(slot, key) in $slots"
+      :slot="key"
+    >
       <slot :name="key" />
     </template>
 
-    <template v-for="(slot, key) in $scopedSlots" :slot="key" slot-scope="scope">
-      <slot :name="key" v-bind="scope" />
+    <template
+      v-for="(slot, key) in $scopedSlots"
+      :slot="key"
+      slot-scope="scope"
+    >
+      <slot
+        :name="key"
+        v-bind="scope"
+      />
     </template>
   </QInput>
 </template>

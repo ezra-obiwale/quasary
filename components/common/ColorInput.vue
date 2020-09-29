@@ -19,6 +19,8 @@
         >
           <QColor
             v-model="model"
+            :color="color"
+            :text-color="textColor"
             default-view="palette"
             format-model="hex"
             no-header
@@ -57,6 +59,10 @@ import FormElementMixin from '../mixins/FormElement'
 export default {
   name: 'ColorInputComponent',
   mixins: [FormElementMixin],
+  props: {
+    color: String,
+    textColor: String
+  },
   data () {
     return {
       usedSlots: ['default', 'append']
