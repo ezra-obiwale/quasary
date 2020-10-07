@@ -15,6 +15,7 @@
 
       <StickableBtn
         type="submit"
+        :text-color="btnTextColor"
         :loading="working"
         :label="btnLabel"
         :regular="regularBtn"
@@ -46,6 +47,9 @@ export default {
     btnLabel: {
       type: String,
       default: 'Save'
+    },
+    btnTextColor: {
+      type: String
     },
     noCancelBtn: {
       type: Boolean,
