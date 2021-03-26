@@ -1,5 +1,6 @@
 <template>
   <component
+    ref="component"
     :is="tag"
     v-bind="$attrs"
     v-on="$listeners"

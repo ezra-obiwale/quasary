@@ -3,15 +3,17 @@
     ref="FormElement"
     tag="q-select"
     :clearable="!multiple && clearable"
+    :display-value-sanitize="!htmlOptions"
     :emit-value="emitValue"
     :map-options="emitValue"
     :multiple="multiple"
-    :use-chips="multiple"
-    :display-value-sanitize="!htmlOptions"
+    :new-value-mode="newValueMode"
     :options-sanitize="!htmlOptions"
     :options-selected-class="!showSelectedOption ? 'hidden' : ''"
+    :use-chips="multiple"
     v-bind="$attrs"
     v-on="$listeners"
+    @blur="movedAway"
   >
     <slot />
 
@@ -62,6 +64,9 @@ export default {
       type: Boolean,
       default: false
     },
+    newValueMode: {
+      type: String
+    },
     showSelectedOption: {
       type: Boolean,
       default: false
@@ -70,6 +75,23 @@ export default {
   data () {
     return {
       usedSlots: ['default']
+    }
+  },
+  methods: {
+    movedAway (event) {
+      if (!this.newValueMode) {
+        return
+      }
+
+      const typedText = (event.target || {}).value
+
+      if (!typedText) {
+        return
+      }
+
+      const QSelect = this.$refs.FormElement.$refs.Element.$refs.component
+
+      QSelect.add(typedText, true)
     }
   }
 }
