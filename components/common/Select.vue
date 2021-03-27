@@ -8,9 +8,11 @@
     :map-options="emitValue"
     :multiple="multiple"
     :new-value-mode="newValueMode"
+    :option-label="optionLabel"
     :options-sanitize="!htmlOptions"
     :options-selected-class="!showSelectedOption ? 'hidden' : ''"
     :use-chips="multiple"
+    :value="value"
     v-bind="$attrs"
     v-on="$listeners"
     @blur="movedAway"
@@ -67,10 +69,14 @@ export default {
     newValueMode: {
       type: String
     },
+    optionLabel: {
+      type: String
+    },
     showSelectedOption: {
       type: Boolean,
       default: false
-    }
+    },
+    value: {}
   },
   data () {
     return {
@@ -78,6 +84,15 @@ export default {
     }
   },
   methods: {
+    isSelectedValue(val) {
+      let optionLabel = this.value
+
+      if (!this.emitValue && !!this.value && typeof this.value === 'object') {
+        optionLabel = this.optionLabel ? this.value[this.optionLabel] : this.value.value
+      }
+
+      return val === optionLabel
+    },
     movedAway (event) {
       if (!this.newValueMode) {
         return
@@ -85,7 +100,7 @@ export default {
 
       const typedText = (event.target || {}).value
 
-      if (!typedText) {
+      if (!typedText || this.isSelectedValue(typedText)) {
         return
       }
 
