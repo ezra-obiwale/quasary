@@ -26,12 +26,11 @@ axios@^0.18.0:
     is-buffer "^2.0.2"
 
 cfb@^1.1.4:
-  version "1.1.4"
-  resolved "https://registry.yarnpkg.com/cfb/-/cfb-1.1.4.tgz#81fd35ede4c919d8f0962a94582e1dfaf7051e2a"
-  integrity sha512-rwFkl3aFO3f+ljR27YINwC0x8vPjyiEVbYbrTCKzspEf7Q++3THdfHVgJYNUbxNcupJECrLX+L40Mjm9hm/Bgw==
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/cfb/-/cfb-1.2.0.tgz#6a4d0872b525ed60349e1ef51fb4b0bf73eca9a8"
+  integrity sha512-sXMvHsKCICVR3Naq+J556K+ExBo9n50iKl6LGarlnvuA2035uMlGA/qVrc0wQtow5P1vJEw9UyrKLCbtIKz+TQ==
   dependencies:
     adler-32 "~1.2.0"
-    commander "^2.16.0"
     crc-32 "~1.2.0"
     printj "~1.1.2"
 
@@ -42,11 +41,6 @@ codepage@~1.14.0:
   dependencies:
     commander "~2.14.1"
     exit-on-epipe "~1.0.1"
-
-commander@^2.16.0:
-  version "2.20.3"
-  resolved "https://registry.yarnpkg.com/commander/-/commander-2.20.3.tgz#fd485e84c03eb4881c20722ba48035e8531aeb33"
-  integrity sha512-GpVkmM8vF2vQUkj2LvZmD35JxeJOLCwJ9cUkugyk2nuhbv3+mJvpLYYt+0+USMxE+oj+ey/lJEnhZw75x/OMcQ==
 
 commander@~2.14.1:
   version "2.14.1"
@@ -91,9 +85,9 @@ frac@~1.1.2:
   integrity sha512-w/XBfkibaTl3YDqASwfDUqkna4Z2p9cFSr1aHDt0WoMTECnRfBOv2WArlZILlqgWlmdIlALXGpM2AOhEk5W3IA==
 
 is-buffer@^2.0.2:
-  version "2.0.4"
-  resolved "https://registry.yarnpkg.com/is-buffer/-/is-buffer-2.0.4.tgz#3e572f23c8411a5cfd9557c849e3665e0b290623"
-  integrity sha512-Kq1rokWXOPXWuaMAqZiJW4XxsmD9zGx9q4aePabbn3qCRGedtH7Cm+zV8WETitMfu1wdh+Rvd6w5egwSngUX2A==
+  version "2.0.5"
+  resolved "https://registry.yarnpkg.com/is-buffer/-/is-buffer-2.0.5.tgz#ebc252e400d22ff8d77fa09888821a24a658c191"
+  integrity sha512-i2R6zNFDwgEHJyQUtJEk0XFi1i0dPFn/oqjK3/vPCcDeJvW5NQ83V8QbicfF1SupOaB0h8ntgBC2YiE7dfyctQ==
 
 ms@2.0.0:
   version "2.0.0"
@@ -106,9 +100,9 @@ printj@~1.1.0, printj@~1.1.2:
   integrity sha512-zA2SmoLaxZyArQTOPj5LXecR+RagfPSU5Kw1qP+jkWeNlrq+eJZyY2oS68SU1Z/7/myXM4lo9716laOFAVStCQ==
 
 quasar@^1.0.0:
-  version "1.12.2"
-  resolved "https://registry.yarnpkg.com/quasar/-/quasar-1.12.2.tgz#6d272d10c0fb8fecf38adf49f06fb0680546be4d"
-  integrity sha512-Jl6tdGsrMNvRN3vf1XhXH1GzA8Xe87bknBQ5R0OXZAiqqJyfUEflTeKn+fhF7h4GvQO+0ntmOmLjKfBylXvVQg==
+  version "1.15.9"
+  resolved "https://registry.yarnpkg.com/quasar/-/quasar-1.15.9.tgz#fad22575387c630f36c249ff4bedd49b14decde3"
+  integrity sha512-Bx+EtUaN4fvU4EiQRkC28A7lt5WHeTE1rmP4a0BAUgg92iZkRjDZfm+OVlqjjCgOYQdcb8pitkvg/L9xxvNLdg==
 
 ssf@~0.10.3:
   version "0.10.3"
