@@ -1,8 +1,9 @@
 <template>
   <QDialog
     ref="QDialog"
-    auto-close
     v-model="model"
+    v-bind="$attrs"
+    auto-close
   >
     <QList
       ref="QList"

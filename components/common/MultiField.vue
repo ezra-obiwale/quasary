@@ -1,16 +1,16 @@
 <template>
   <div>
-    <q-toolbar>
-      <q-toolbar-title v-if="label">{{ label }}</q-toolbar-title>
-      <q-space />
-      <q-btn
+    <QToolbar>
+      <QToolbarTitle v-if="label">{{ label }}</QToolbarTitle>
+      <QSpace />
+      <QBtn
         color="primary"
         icon="add"
         @click="$emit('add')"
         flat
         round
       />
-    </q-toolbar>
+    </QToolbar>
 
     <div
       class="relative-position"
@@ -21,7 +21,7 @@
         :field="field"
         :index="index"
       />
-      <q-btn
+      <QBtn
         v-if="canRemove"
         icon="close"
         class="absolute-bottom-right"

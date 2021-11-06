@@ -2,6 +2,7 @@
   <QCardActions
     ref="QCardActions"
     :class="{'bg-primary-light': confirmDelete}"
+    v-bind="$attrs"
   >
     <template v-if="confirmDelete">
       <div

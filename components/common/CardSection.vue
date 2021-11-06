@@ -2,6 +2,7 @@
   <QCardSection
     ref="QCardSection"
     class="row"
+    v-bind="$attrs"
   >
     <div class="col">
       <slot />

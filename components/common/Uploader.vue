@@ -5,10 +5,11 @@
       v-if="!canShowUploader"
       class="cursor-pointer"
       :src="preview"
+      :ratio="7/3"
+      v-bind="$attrs"
+      @click="previewClicked"
       basic
       contain
-      @click="previewClicked"
-      :ratio="7/3"
     >
       <div
         v-if="previewText"

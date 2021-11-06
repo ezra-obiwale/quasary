@@ -5,6 +5,7 @@
     :to="path"
     :active="isActive"
     :active-class="activeClass"
+    v-bind="$attrs"
     @click="handler"
   >
     <QItemSection v-if="!isChild && icon" avatar>

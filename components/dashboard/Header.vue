@@ -1,8 +1,8 @@
 <template>
   <QHeader
-    elevated
-    reveal
     :class="`${color} ${bgColor} ${!showInPrint ? 'print-hide' : ''}`"
+    v-bind="$attrs"
+    elevated
   >
     <QToolbar>
       <slot name="before-title">

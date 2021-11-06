@@ -6,6 +6,7 @@
     class="relative-position"
     :class="{ 'print-pt-remove': hideTitleOnPrint }"
     :style="styleObject"
+    v-bind="$attrs"
   >
     <component
       :is="isMobile && !noInfiniteScroll ? 'QInfiniteScroll' : 'div'"

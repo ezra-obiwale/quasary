@@ -2,6 +2,7 @@
   <QTooltip
     :anchor="anchor"
     :self="self"
+    v-bind="$attrs"
   >
     <slot />
 
