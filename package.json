@@ -1,6 +1,6 @@
 {
   "name": "@ezraobiwale/quasary",
-  "version": "2.8.1",
+  "version": "2.8.2",
   "description": "Components for Quasar Framework",
   "main": "index.js",
   "repository": "git@github.com:ezra-obiwale/quasary.git",
@@ -8,7 +8,7 @@
   "license": "MIT",
   "private": false,
   "dependencies": {
-    "@ezraobiwale/http": "^1.2.0",
+    "@ezraobiwale/http": "^2.0.0",
     "quasar": "^1.0.0",
     "xlsx": "^0.17.0"
   }
