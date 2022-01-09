@@ -38,9 +38,11 @@ export default {
   methods: {
     options (dDate) {
       let status = true
-      if ((this.min && dDate < this.min) || (this.max && dDate > this.max)) {
+
+      if ((this.min && date.getDateDiff(dDate, this.min) < 0) || (this.max && date.getDateDiff(dDate, this.max) > 0)) {
         status = false
       }
+
       return status
     }
   }
