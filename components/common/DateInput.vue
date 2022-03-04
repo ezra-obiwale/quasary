@@ -4,7 +4,6 @@
     v-model="model"
     v-bind="attrs"
     v-on="$listeners"
-    @focus="$refs.proxy.show()"
     @click="$refs.proxy.show()"
   >
     <template #append>

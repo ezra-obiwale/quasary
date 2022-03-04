@@ -31,7 +31,7 @@ export default {
         this.$emit('input', value)
       },
       get () {
-        return this.mask ? date.formatDate(new Date(this.value), this.mask) : this.value
+        return this.value && this.mask ? date.formatDate(new Date(this.value), this.mask) : this.value
       }
     }
   },
