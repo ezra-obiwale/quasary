@@ -12,6 +12,7 @@
     :options-sanitize="!htmlOptions"
     :options-selected-class="!showSelectedOption ? 'hidden' : ''"
     :use-chips="multiple"
+    :use-input="!!newValueMode"
     :value="value"
     v-bind="$attrs"
     v-on="$listeners"
