@@ -4,6 +4,7 @@
     class="q-gutter-y-md"
     v-bind="$attrs"
     v-on="$listeners"
+    autofocus
   >
     <slot />
 
